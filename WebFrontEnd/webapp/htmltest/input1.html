@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>입력 양식1</h1>
+	<!--
+	form : 입력한 자료를 서버로 보낸다.
+	action : 서버 페이지 주소
+	submit : 입력된 정보를 가지고 서버로 가라.
+	반드시 input 태그 요소들은 'name'을 입력해야 한다.
+	
+	method
+	- get : 데이터를 256 ~ 4096byte까지만 서버로 넘길 수 있음, 주소창에 입력한 내용 노출(보안 불가)
+	- post : 입력한 내용의 길이에 제한 없음, 주소창에 노출도 안됨
+	-->
+	<form action="../jsptest/input1.jsp" method="get">
+		id : <input name="userid" value="아이디">
+		<br>
+		name : <input name="username" value="이름">
+		<br>
+		<input type="submit" value="서버 전송(get)">
+		
+		<!-- submit 하면 -->
+		<!-- http://localhost:9090/appleShop/jsptest/input1.jsp?userid=gjk0635&username=%EA%B9%80%EA%B4%91%EC%A7%84 -->
+	</form>
+	
+	<hr>
+	
+	<form action="../jsptest/input1.jsp" method="post">
+		id : <input name="userid" value="아이디">
+		<br>
+		name : <input name="username" value="이름">
+		<br>
+		<input type="submit" value="서버 전송(post)">
+		
+		<!-- submit 하면 -->
+		<!-- http://localhost:9090/appleShop/jsptest/input1.jsp?userid=gjk0635&username=%EA%B9%80%EA%B4%91%EC%A7%84 -->
+	</form>
+	
+	<hr>
+	
+	<!-- 
+	get 방식
+	1) 주소창에 직접 입력하고 enter
+	2) <a href=""></a>
+	3) <form method="get"></form> cf. method 생략 시 디폴트 get, post 방식은 "post" 입력해야 post
+	-->
+	<a href="../jsptest/input1.jsp?userid=aa&username=bb">a태그는 get 방식</a></a>
+</body>
+</html>

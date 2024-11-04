@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>입력 양식3</h1>
+	
+	<form action="">
+		<fieldset>
+			<legend>기본 타입</legend>
+			autofocus text1 : <input name="input1" autofocus="autofocus"><br>
+			입력안되는 text2 : <input type="text" name="input2" value="입력, 수정 안됨(readonly)" readonly="readonly"><br>
+			
+			password : <input type="password" name="input3" placeholder="비밀번호(필수 입력)" required="required"><br>
+			
+			hidden : <input type="hidden" name="input4" value="A"><br>
+			
+			search : <input type="search" name="input5"><br>
+			
+			url 형식(Validation Check 자동) : <input type="url" name="input6"><br>
+			
+			email 형식(Validation Check 자동) : <input type="email" name="input7"><br>
+			
+			tel : <input type="tel" name="input8" pattern="[01]{3}-[0-9]{4}-[0-9]{4}">
+		</fieldset>
+		
+		<fieldset>
+			<legend>Radio(서로 배타적)</legend>
+			<input type="radio" value="man" name="gender" checked="checked">남자
+			<input type="radio" value="woman" name="gender">여자
+			<br><br>
+			<input type="radio" value="a" name="fruit">사과
+			<input type="radio" value="b" name="fruit">바나나
+			<input type="radio" value="c" name="fruit" checked>수박
+		</fieldset>
+		
+		<fieldset>
+			<legend>CheckBox(서로 독립적)</legend>
+			<input type="checkbox" value="java" name="subject">Java
+			<input type="checkbox" value="db" name="subject">DB
+			<input type="checkbox" value="html" name="subject">HTML
+			<input type="checkbox" value="css" name="subject">CSS
+		</fieldset>
+		
+		<fieldset>
+			number : <input type="number" value="5" min="0" max="10">
+			range : <input type="range" value="5" min="0" max="10" step="1">
+		</fieldset>
+		
+		<fieldset>
+			<legend>날짜</legend>
+			<input type="date" name="input10">
+			<input type="month" name="input11">
+			<input type="week" name="input12">
+			<input type="time" name="input13">
+			<input type="datetime" name="input14">
+			<input type="datetime-local" name="input15">
+		</fieldset>
+		
+		<fieldset>
+			<legend>버튼들</legend>
+			<input type="submit" value="서버 전송 submit">
+			<input type="button" onclick="alert('[알림] 버튼 눌렀음')" value="onclick button">
+			<input type="reset" value="서버 전송 reset">
+			<!-- submit, image는 자동으로 서버에 전송, button은 전송하기 위해서는 JS 코드가 필요 -->
+			<input type="image" src="../resources/images/tree.jpg" value="서버 전송 image" width="50px" height="50px">
+			<br>
+			<button>form 안에 버튼(submit됨)</button>
+		</fieldset>
+	</form>
+	<button>form 밖에 있는 버튼</button>
+	
+	<hr>
+	
+	<fieldset>
+		<legend>기타</legend>
+		파일 1개만 선택 : <input type="file"><br>
+		파일 여러 개 선택 : <input type="file" multiple="multiple">
+	</fieldset>
+	
+	<fieldset>
+		<legend>선택</legend>
+		<select name="fruit2">
+			<optgroup label="A">
+				<option>바나나1</option>
+				<option>바나나2</option>
+				<option selected="selected">바나나3</option>
+				<option>바나나4</option>
+				<option>바나나5</option>
+			</optgroup>
+			<optgroup label="B">
+				<option value="orange">오렌지</option>
+				<option>귤</option>
+				<option>한라봉</option>
+			</optgroup>
+		</select>
+		
+		<input type="text" list="my">
+		<datalist id="my">
+			<option value="orange">오렌지</option>
+			<option>귤</option>
+			<option>한라봉</option>
+		</datalist>
+	</fieldset>
+</body>
+</html>

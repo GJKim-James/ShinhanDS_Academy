@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/*
+	inline 요소 : 자신의 내용만큼만 자리 차지 ex) <img>, <a> 등, width 속성 가질 수 없다.
+	block 요소 : 한 줄 전체를 차지 ex) <div>, <p>, <h1> 등
+	*/
+	label {
+		display: inline-block;
+		width: 100px;
+		background-color: green;
+	}
+</style>
+</head>
+<body>
+	<h1>입력 양식2</h1>
+	<form action="">
+		<fieldset>
+			<legend>사용자 정보</legend>
+			<label for="userid">id : <input id="userid"><br></label>
+			<label for="username">name : <input id="username"><br></label>
+			<label for="useremail">email : <input id="useremail"></label>
+		</fieldset>
+		<fieldset>
+			<legend>상품 정보</legend>
+			<input>
+			<input>
+			<input>
+		</fieldset>
+	</form>
+</body>
+</html>
