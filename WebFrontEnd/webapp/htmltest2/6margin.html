@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#container {
+	border: 1px solid red;
+}
+
+.box {
+	width: 200px;
+	height: 100px;
+	margin: 30px;
+	padding: 10px;
+	border: 1px solid blue;
+	box-sizing: content-box;
+}
+
+#first {
+	/* margin이 서로 겹쳐지는 경우 큰 쪽으로 겹쳐짐 */
+	margin: 50px;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div class="box" id="first">a</div>
+		<div class="box">b</div>
+		<div class="box">c</div>
+	</div>
+</body>
+</html>

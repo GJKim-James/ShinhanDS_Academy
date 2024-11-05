@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- external CSS -->
+<link rel="stylesheet" href="css/external.css">
+<style type="text/css">
+	/* internal CSS */
+	* {
+		margin: 0;
+	}
+	h1, p {
+		text-align: center;
+	}
+	.aa {
+		border: 1px solid black;
+		padding: 15px;
+	}
+	p {
+		font-style: italic;
+	}
+	#myp {
+		color: white;
+		background-color: lightgreen;
+	}
+</style>
+</head>
+<body>
+	<h1>CSS 익히기</h1>
+	<h1 class="aa">CSS 익히기(class 선택자 적용)</h1>
+	
+	<h2 class="aa">class 선택자 적용</h2>
+	<h2>class 선택자 적용 안하기</h2>
+	
+	<p>1. CSS(브라우저 기본적으로 지원; user agent stylesheet)</p>
+	<p style="color: blue">2-1. 사용자 정의(inline) : 태그에 스타일을 직접 설정(권장 안함)</p>
+	<p id="myp">2-2. 사용자 정의(internal)</p>
+	<p id="myp2">2-3. 사용자 정의(external)</p>
+</body>
+</html>

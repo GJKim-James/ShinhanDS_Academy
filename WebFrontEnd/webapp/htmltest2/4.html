@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {
+		/* width는 display: block or inline-block; 상태에서만 적용된다.
+		   inline은 content 크기 만큼만 자리 차지
+		*/
+		border: 1px solid blue;
+		width: 100px;
+		display: inline; /* block : default */
+	}
+	span {
+		border: 1px solid red;
+		width: 100px;
+		display: block;
+	}
+	section.first, section.second {
+		border: 1px solid gray;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>Block 요소와 Inline 요소</h1>
+	<section class="first">
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</section>
+	<section class="second">
+		<span>D</span>
+		<span>E</span>
+		<span>F</span>
+	</section>
+</body>
+</html>
