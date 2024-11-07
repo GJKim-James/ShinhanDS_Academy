@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>상품 소개 페이지</title>
+<style>
+/* Do it! rem 단위로 글자 크기 지정하기 */
+html {
+	font-size: 16px;
+}
+
+/* rem은 루트(root)에서 지정한 크기를 기준값으로 사용 */
+.content {
+	font-size: 2rem;
+}
+
+p {
+	font-size: 1rem;
+	/* html 선택자(root)에서 16px로 설정했으므로 16px로 나타남,
+	em이었다면 부모인 .content의 크기를 따름 */
+}
+</style>
+</head>
+<body>
+	<h1>레드향</h1>
+	<p>껍질에 붉은 빛이 돌아 레드향이라 불린다.</p>
+	<div class="content">
+		<p>레드향은 한라봉과 귤을 교배한 것으로</p>
+		<p>일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+	</div>
+</body>
+</html>
