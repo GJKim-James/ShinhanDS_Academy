@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>review2</title>
+<style type="text/css">
+#container {
+	border: 1px solid gray;
+	height: 100vh; /* vh : viewport height; 보고 있는 화면의 전체 */	
+}
+
+.box {
+	border: 5px solid gray;
+	width: 100px;
+	height: 100px;
+	padding: 10px;
+	margin: 5px;
+	/* 기본 : box-sizing: content-box; */
+}
+
+.second {
+	/* 100px => (70px + 10px * 2 + 5px * 2) */
+	box-sizing: border-box;
+	margin: 50px 30px;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div class="box"></div>
+		<div class="box second"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+	</div>
+</body>
+</html>
