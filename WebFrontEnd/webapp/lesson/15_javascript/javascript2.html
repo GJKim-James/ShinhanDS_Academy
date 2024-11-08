@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>javascript2.html</title>
+	<script type="text/javascript">
+		function call1() {
+			alert("메세지 창 보이는 함수");
+		}
+	
+		function call2() {
+			result = confirm("계속하시겠습니까?"); // 결과는 boolean
+			alert(result);
+		}
+	
+		function call3() {
+			age = prompt("나이를 입력하세요.", 20); // 결과는 String
+			alert(age + 2); // 202
+			alert(Number(age) + 2); // 22
+		}
+		
+		function call4() {
+			// document.write("body 부분에 문자 출력1");
+			// document.write("body 부분에 문자 출력2");
+			document.querySelector("#here").innerHTML = "here 문자열 출력";
+			document.querySelector(".here2").innerHTML = "here2 문자열 출력";
+		}
+	</script>
+</head>
+<body>
+	<h1>JavaScript 연습</h1>
+	<hr>
+
+	<button onclick="call1()">alert 함수</button>
+	<button onclick="call2()">confirm 함수</button>
+	<button onclick="call3()">prompt 함수</button>
+	<button onclick="call4()">write 함수</button>
+	<hr>
+	
+	<div id="here">여기</div>
+	<div class="here2">여기2</div>
+</body>
+</html>

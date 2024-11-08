@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript.html</title>
+<script type="text/javascript">
+	// internal JavaScript => HTML 문서 내 작성
+	alert("1. head에서 작성함");
+	console.log("1. head에서 작성함...개발자 도구에서 확인")
+</script>
+<script type="text/javascript" src="js/external.js"></script>
+<style type="text/css">
+h1 {
+	background-color: lightgreen;
+}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		alert("2. body에서 작성함");
+		console.log("2. body 앞부분에서 작성함...개발자 도구에서 확인")
+	</script>
+
+	<!-- inline JavaScript(권장 안함) -->
+	<h1 onclick="alert('h1 클리함')">JavaScript 연습</h1>
+	<h1 onclick="call()">external.js call() 함수 호출</h1>
+
+	<script type="text/javascript">
+		alert("3. body에서 작성함");
+		console.log("3. body 뒷부분에서 작성함...개발자 도구에서 확인")
+	</script>
+</body>
+</html>
