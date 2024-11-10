@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>js_grammar2.html</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		function f2() {
+			var num = prompt("3의 배수를 입력하세요.", 3);
+			console.log("num : " + num);
+			
+			if (num !== null) {
+				if (parseInt(num) % 3 === 0) {
+					here.innerHTML = "3의 배수입니다.";
+				} else {
+					here.innerHTML = "3의 배수가 아닙니다.";
+				}
+			} else {
+				here.innerHTML = "입력이 안되었습니다.(null)";
+			}
+		}
+		
+		function f3() {
+			var num = prompt("3의 배수를 입력하세요.", 3);
+			console.log("num : " + num);
+			
+			if (num !== null) {
+				here.innerHTML = (parseInt(num) % 3 === 0) ? "3의 배수입니다." : "3의 배수가 아닙니다.";
+			} else {
+				here.innerHTML = "입력이 안되었습니다.(null)";
+			}
+		}
+		
+		function f4() {
+			// input 태그는 value 속성에 값을 가지고 있다.
+			var num = document.getElementById("inputValue").value;
+			
+			var sum = 0;
+			for (var i = 1; i <= num; i++) {
+				sum += i;
+			}
+			
+			// div 태그 사이의 content는 innerHTML로 접근; <div><h1>5050</h1></div>
+			// innerText; HTML 태그는 인식 못함, 문자(Text)로 인식
+			document.querySelector("#here").innerHTML = "<h2>" + num + "까지의 합 : " + sum + "</h2>";
+		}
+		
+		function f5() {
+			var output = "<h1>구구단</h1>";
+			
+			for (var i = 2; i <= 9; i++) {
+				output += "<h3>" + i + "단</h3>";
+				for (var j = 1; j <= 9; j++) {
+					output += `${i} X ${j} = ${i * j}<br>`; // ` : 백틱(숫자 1 왼쪽)
+				}
+			}
+			
+			document.querySelector("#here").innerHTML = output;
+		}
+		
+		function f6() {
+			var output = "<h1>구구단</h1>";
+			
+			for (var i = 1; i <= 9; i++) {
+				output += "<tr>";
+				for (var j = 2; j <= 9; j++) {
+					output += `<td>${j} X ${i} = ${j * i}</td>`; // ` : 백틱(숫자 1 왼쪽)
+				}
+				output += "</tr>";
+			}
+			
+			var th = "<tr>";
+			for (var k = 2; k <= 9; k++) {
+				th += "<th>" + k + "단</th>";
+			}
+			th += "</tr>";
+			
+			document.querySelector("#here").innerHTML = "<table>" + th + output + "</table>";
+		}
+	</script>
+	<style type="text/css">
+	table, tr, th, td {
+		border: 1px solid black;
+	}
+	tr, th, td {
+		text-align: center;
+		padding: 5px;
+	}
+	</style>
+</head>
+<body>
+	<h1>JavaScript 기본 문법</h1>
+	<hr>
+	
+	<button onclick="f1()" class="btn btn-primary">데이터 타입(자료형)</button>
+	<button onclick="f2()" class="btn btn-primary">조건문(if)</button>
+	<button onclick="f3()" class="btn btn-primary">삼항 연산자(if)</button>
+	<hr>
+	
+	<div>
+		<input type="tel" id="inputValue" value="100" placeholder="~까지 합계 구하기">
+		<button onclick="f4()" class="btn btn-info">for 반복문</button>
+	</div>
+	<hr>
+	
+	<button onclick="f5()" class="btn btn-success">반복문(구구단)</button>
+	<button onclick="f6()" class="btn btn-success">반복문(구구단 table)</button>
+	<hr>
+	
+	<div id="here">결과 표시 영역</div>
+	<hr>
+	
+	<table>
+		<tr>
+			<td colspan="4">참고용</td>
+		</tr>
+		<tr>
+			<th>2단</th>
+			<th>3단</th>
+			<th>4단</th>
+			<th>5단</th>
+		</tr>
+		<tr>
+			<td>2 X 1 = 2</td>
+			<td>3 X 1 = 3</td>
+			<td>4 X 1 = 4</td>
+			<td>5 X 1 = 5</td>
+		</tr>
+		<tr>
+			<td>2 X 2 = 4</td>
+			<td>3 X 2 = 6</td>
+			<td>4 X 2 = 8</td>
+			<td>5 X 2 = 10</td>
+		</tr>
+	</table>
+	
+	<script type="text/javascript">
+		// internal JavaScript
+		f1(); // <head> 태그 안에 <script> 선언 시 id="here"를 찾지 못하기 때문에 에러
+		
+		function f1() {
+			// 선언적 함수
+			// data type : number, string, boolean, object, null, undefined, function
+			var obj = document.getElementById("here");
+			obj.innerHTML = "<p>data type : number, string, boolean, object, null, undefined, function</p>";
+		}
+	</script>
+</body>
+</html>

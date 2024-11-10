@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>자리 배치도</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		function f1() {
+			init_table = "<table>"
+			+ "<tr><td>X</td><td></td><td></td><td></td><td></td><td></td><td></td><td>X</td></tr>"
+			+ "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+			+ "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+			+ "<tr><td>X</td><td></td><td></td><td></td><td>X</td><td>X</td><td>X</td><td>X</td></tr>"
+			+ "</table>";
+			document.querySelector("#here").innerHTML = init_table;
+			
+			var myClass = "김정은.한승보.류혜진.전운종.유성훈.임서희.김신영.윤성웅.한종현.송재명.홍의찬.박은수.박시현.김광진.정민영.이태한.김용범.박은지.정홍택.박설.정재윤.김은정.강은영.신승균";
+			var arr = myClass.split(".");
+			
+			var arr_td = document.querySelectorAll('td');
+			console.log(arr_td);
+			
+			for (var i = 0; i < arr.length; i++) {
+				console.log("arr[" + i + "] : " + arr[i]);
+				
+				var isStop = false;
+				
+				while (!isStop) {
+					var num = Math.floor((Math.random() * 32)); // 0 ~ 31까지 랜덤한 숫자
+					
+					var content = arr_td[num].innerHTML;
+					
+					if (content == "X" || content.length > 0) { // td 안에 'X'가 있거나 어떤 값이 있으면
+						continue;
+					} else {
+						arr_td[num].innerHTML = arr[i];
+						isStop = true;
+					}
+				}
+			}
+		}
+	</script>
+	<style type="text/css">
+		tr, td {
+			border: 1px solid black;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>우리반 자리 배치도</h1>
+	<hr>
+	
+	<button onclick="f1()" class="btn btn-primary">자리 배치도</button>
+	<hr>
+	
+	<div id="here">결과 표시 영역</div>
+	<hr>
+	
+	<table>
+		<tr>
+			<td>X</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>X</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>X</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+		</tr>
+	</table>
+</body>
+</html>

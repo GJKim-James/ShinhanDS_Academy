@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>전역변수/지역변수</title>
+	<script type="text/javascript">
+		var sum = 100; // 전역 변수
+		sum2 = 200; // 전역 변수
+		
+		function f1() {
+			var sum3 = 300; // 지역 변수
+			sum4 = 400; // 전역 변수
+			
+			alert(sum + sum2 + sum3 + sum4); // 1000
+		}
+// 		alert(sum + sum2 + sum3 + sum4); // sum3 is not defined
+		
+		function f2() {
+			var num = 100;
+			// NaN(Not a Number) : 숫자가 아니다. ex) undefined + 1 : NaN
+			var total = 0; // 값을 할당하지 않으면 타입이 결정되지 않으므로 undefined
+			
+			// var : 지역 변수, 함수 내에서 유효
+			// let : block {} 내에서 유효
+			for (let i = 1; i <= num; i++) {
+				console.log(i, total);
+				total += i;
+			}
+			document.querySelector("#here").innerHTML = num + "까지의 합 : " + total;
+			
+			// const : 상수; 값 수정 불가
+			const name = "신한DS";
+// 			name = "신한DS2"; // Uncaught TypeError: Assignment to constant variable.
+			document.querySelector("#here").innerHTML += ("<br> name : " + name);
+			
+			// let : block {} 내에서 유효
+			{
+				let coffee = "아메리카노";
+				console.log(coffee);
+			}
+// 			console.log(coffee); // Uncaught ReferenceError: coffee is not defined
+		}
+	</script>
+</head>
+<body>
+	<h1>변수</h1>
+	<button onclick="f1()">전역변수/지역변수</button>
+	<button onclick="f2()">var &amp; let</button>
+	<hr>
+	
+	<div id="here">결과 표시 영역</div>
+</body>
+</html>

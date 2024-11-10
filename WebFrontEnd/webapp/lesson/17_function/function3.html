@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Function3</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		function f1() {
+			// 콜백 함수 : 함수를 파라미터(매개변수)로 보내고 받은 쪽에서 호출
+			var f = function() {
+				alert("콜백 함수 연습");
+			};
+			
+			f2(f);
+		}
+		
+		function f2(argFunction) {
+			argFunction();
+		}
+		
+		function f3() {
+			var f = function() {
+				document.querySelector("#here").innerText = new Date();
+			};
+			
+			timer = setInterval(f, 1000); // 일정 시간마다 수행; 1초마다 f 실행
+		}
+		
+		function f3_stop() {
+			clearInterval(timer);
+		}
+		
+		function f4() {
+			var func = returnFunc();
+			
+			var result = func(); // returnFunc() 함수에서 선언된 지역 변수 score 사용 가능
+			
+			document.querySelector("#here").innerText = "result : " + result;
+		}
+		
+		function returnFunc() {
+			// 클로저 : 지역 변수는 함수 내에서만 사용한다는 규칙 위반; f4() 함수에서 사용
+			// 함수 안의 지역 변수는 함수 외부에서 사용 불가능
+			// 지역 변수는 함수 실행 시 생성되고 종료 시 사라짐
+			// 지역 변수는 함수 종료 후 메모리에서 사라져야 하지만 function에 담겨서 다른 함수로 이동
+			var score = 100;
+			
+			var f = function() {
+				alert('나의 점수는 ' + score);
+				return score;
+			};
+			
+			return f;
+		}
+		
+		// 익명 함수이자 즉시 실행 함수
+		var add = (function() {
+			var cnt = 0;
+			console.log("즉시 실행 함수는 1번 실행되고 있다.");
+			
+			return function() {
+				cnt++;
+				return cnt;
+			}
+		})();
+		
+		function f5() {
+			document.querySelector("#here").innerText = "cnt : " + add();
+		}
+		
+		// var2는 global scope 갖는다.(바람직하지 않음)
+		var cnt2 = 0;
+		function f6() {
+			cnt2++;
+			document.querySelector("#here").innerText = "cnt2 : " + cnt2;
+		}
+		
+		function f7() {
+			for (let i = 1; i <= 3; i++) {
+				// [방법1] : 원하는 결과가 아님
+// 				setTimeout(function() { alert(i); }, 1); // 일정 시간 후 1회 수행; 1milliseconds 후에 함수 실행
+				
+				// [방법2] : 원하는 결과; 지역 변수를 다른 지역 변수에서도 사용
+				/* (function(a) {
+					setTimeout(function() { alert('i : ' + a); }, 1);
+				})(i); */
+				
+				// [방법3] : let 변수는 block 내에서만 유효
+				setTimeout(function() { alert('i : ' + i); }, 1);
+			}
+		}
+		
+		function f8() {
+			var arr = [10, 20, 30];
+			
+			arr.forEach(function(element, index, array) {
+				console.log("element : " + element, "index : " + index, "array : " + array);
+				console.log(element, index, array);
+				
+				setTimeout(function() {
+					alert(element);
+				});
+			});
+		}
+	</script>
+</head>
+<body>
+	<h1>Function3</h1>
+	<hr>
+
+	<button onclick="f1()" class="btn btn-primary">콜백 함수</button>
+	<button onclick="f3()" class="btn btn-primary">콜백 함수(현재 시각 출력)</button>
+	<button onclick="f3_stop()" class="btn btn-primary">시계 중지</button>	
+	<hr>
+	
+	<button onclick="f4()" class="btn btn-primary">함수를 Return(클로저 때문)</button>
+	<button onclick="f5()" class="btn btn-primary">Counter</button>
+	<button onclick="f6()" class="btn btn-primary">Counter2(전역 변수 사용)</button>
+	<button onclick="f7()" class="btn btn-primary">클로저 연습</button>
+	<button onclick="f8()" class="btn btn-primary">클로저 연습(ECMAScript6; forEach)</button>
+	<hr>
+
+	<div id="here">결과 표시 영역</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js_grammar.html</title>
+<script type="text/javascript">
+	function call() {
+		age = prompt("나이를 입력하세요.", 20); // 결과는 String
+		alert(age + 2); // 202
+		alert(Number(age) + 2); // 22
+	}
+
+	function call2() {
+		document.querySelector("#here").innerHTML = age + "...나이";
+		
+		// 변수 선언
+		// var 붙이면 지역 변수, 없으면 전역 변수
+		var a = 100;
+		b = 200; // 할당 시에 변수가 만들어진다.
+		call6();
+	}
+	
+	function call3() {
+		// a is not defined...다른 함수 지역의 변수는 접근 불가
+		document.querySelector("#here").innerHTML = b;
+	}
+	
+	function call4() {
+		// 자바스크립트 : 호이스팅을 먼저 하고 순서대로 실행; 호이스팅 : var score;
+		// var이 붙어있는 선언을 가장 위로 올려서 먼저 수행함
+		// 값이 할당되면 타입이 결정된다.
+		console.log(score + " : " + typeof(score)); // undefined
+		
+		var score = 100; // 소수점도 number
+		console.log(score + " : " + typeof(score)); // number
+		
+		score = "A학점"; // "", '' 구분 안함
+		console.log(score + " : " + typeof(score)); // string
+		
+		score = 10 > 20;
+		console.log(score + " : " + typeof(score)); // boolean
+		
+		score = null;
+		console.log(score + " : " + typeof(score)); // object
+		
+		score = [10, 20, 30, "A", 'B', 10 > 20, function() {}, {}, [1, 2, 3]];
+		console.log(score + " : " + typeof(score)); // object
+		
+		score = {}; // javascript object
+		console.log(score + " : " + typeof(score)); // object
+		
+		score = function() {};
+		console.log(score + " : " + typeof(score)); // function
+	}
+	
+	function call5() {
+// 		document.getElementById("here");
+		here.innerHTML = (3 == '3') + "<br>"; // 값 비교
+		here.innerHTML += (3 === '3') + "<br>"; // 값과 타입을 비교
+
+		var a = 100;
+		var b = "100";
+		here.innerHTML += (a == b) + "<br>";
+		here.innerHTML += (a === b) + "<br>";
+		here.innerHTML += (a !== b);
+	}
+	
+	function call6() {
+		var a = 100;
+		var b = 200;
+		here.innerHTML = (a >= 100 && b >= 200) + "<br>";
+		
+		// && : 앞의 결과가 false이면 뒷 문장은 수행하지 않음
+		// || : 앞의 결과가 true이면 뒷 문장은 수행하지 않음
+// 		here.innerHTML = "결과는 " + (a >= 100 && b >= 200) + "<br>";
+// 		here.innerHTML = "결과는 " + (a <= 100 && ++b >= 200) + "<br>";
+// 		here.innerHTML = "결과는 " + (a >= 100 && ++b >= 200) + "<br>";
+		here.innerHTML = "결과는 " + (a > 100 || ++b >= 200) + "<br>";
+		here.innerHTML += "b : " + b;
+	}
+</script>
+</head>
+<body>
+	<h1>JavaScript 문법</h1>
+	<hr>
+
+	<button onclick="call()">prompt 함수</button>
+	<button onclick="call2()">변수 선언1</button>
+	<button onclick="call3()">변수 선언2</button>
+	<button onclick="call4()">데이터 타입(자료형)</button>
+	<button onclick="call5()">비교 연산자</button>
+	<button onclick="call6()">논리 연산자</button>
+	<hr>
+	
+	<div id="here">여기</div>
+</body>
+</html>
