@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+		rel="stylesheet">
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+	<title>JavaScript Review</title>
+	<script type="text/javascript">
+		var f = function() {};
+		
+		// 이벤트 이름 : load, 이벤트 속성(이벤트와 이벤트 핸들러 연결) : onload, 이벤트 핸들러 : 동작, function(){}
+		window.onload = function() {
+			var obj = document.querySelector("#btn-review");
+			
+			// 콜백 함수 : 함수를 다른 함수에 전달, 호출은 받은 쪽에서 한다.
+			obj.onclick = f1;
+		};
+		
+		function f1() {
+			console.log("this.innerText : " + this.innerText);
+			
+			var result = innerFunc();
+			console.log("return 값 : " + result);
+			
+			// 내부 함수 : 함수 내에서만 접근 가능
+			function innerFunc() {
+				console.log("내부 함수 : 함수 내에서만 접근 가능");
+				
+				return 100;
+			}
+		};
+	</script>
+</head>
+<body
+	class="p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row bd-example-row-flex-cols">
+
+	<div class="container text-center">
+		<div class="row align-items-start">
+			<div class="col">
+				<button id="btn-review" class="btn btn-primary">함수 복습</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
