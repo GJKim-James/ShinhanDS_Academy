@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery2</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="jquery-3.7.1.min.js"></script>
+	<script type="text/javascript">
+// 		$.noConflict(); // 식별자 $를 사용할 수 없음(jQuery 충돌 방지)
+	
+		$(f_initial);
+		
+		function f_initial() {
+			$("button:nth-of-type(1)").click(f_go);
+			$("button:nth-of-type(2)").click(f_go2);
+			$("button:nth-of-type(3)").click(f_go3);
+			$("button:nth-of-type(4)").click(f_go4);
+			$("button:nth-of-type(5)").click(f_go5);
+			$("button:nth-of-type(6)").click(f_go6);
+			$("button:nth-of-type(7)").click(f_go7);
+			$("button:nth-of-type(8)").click(f_go8);
+			$("button:nth-of-type(9)").click(f_go9);
+			$("div button:nth-of-type(1)").click(f_go10);
+		}
+		
+		function f_go() {
+			var arr = [{"name": "구글", link: "http://www.google.com"}];
+			arr.push({"name": "네이버", link: "http://www.naver.com"});
+			arr.push({"name": "다음", link: "http://www.daum.net"});
+			
+			var output = "";
+			$.each(arr, function(index, item) {
+				output += `<li><a href="${item.link}">${item.name}</a></li>`;
+			});
+			output = `<ul>${output}</ul>`;
+			
+			$("#here").html(output);
+		}
+		
+		function f_go2() {
+			$("ul li a").each(function(index, item) {
+				console.log(index, "번째", item);
+				console.log("content : " + $(item).text(), ", 속성 : " + $(item).attr("href"));
+			});
+		}
+		
+		function f_go3() {
+			$("p:nth-of-type(2n)").addClass("high-light");
+		}
+		
+		function f_go4() {
+			var obj = {menu: "김밥"};
+			var obj2 = {price: 5000, phone: "010-1234-1234"};
+			$.extend(obj, obj2, {address: "마포구 연남동"});
+			
+			var output = "";
+			$.each(obj, function(key, item) {
+				output += `<p>${key} : ${item}</p>`;
+			});
+			$("#here").html(output);
+		}
+		
+		function f_go5() {
+			$("p:nth-of-type(even)").css("color", "red");
+			$("p").filter(":nth-of-type(odd)").css("color", "blue");
+			
+			$("p").filter(function(index) { return index % 3 == 0; }).css("border", "5px solid hotpink");
+		}
+		
+		function f_go6() {
+			// end() 있으면 filter(":even")의 상위를 의미; $("h2")
+			// end() 없으면 filter(":even") 중에서 filter(":odd") 홀수를 의미
+			$("h2").css("background-color", "violet")
+				.filter(":even").css("color", "white").end()
+				.filter(":odd").css("font-style", "italic");
+		}
+		
+		function f_go7() {
+			// eq(index) : index에 해당하는 태크 선택
+			$("p").eq(0).css("color", "white");
+			$("p").eq(-1).css("color", "white");
+			
+			
+			$("p").first().css("background-color", "skyblue");
+			$("p").last().css("background-color", "skyblue");
+		}
+		
+		function f_go8() {
+			var xmlStr = `
+				<friends>
+					<friend>
+						<name>홍길동1</name>
+						<phone>010-1234-5678</phone>
+					</friend>
+					<friend>
+						<name>홍길동2</name>
+						<phone>010-1111-2222</phone>
+					</friend>
+					<friend>
+						<name>홍길동3</name>
+						<phone>010-3333-5555</phone>
+					</friend>
+				</friends>
+			`;
+			console.log(xmlStr);
+			
+			var xmlDoc = $.parseXML(xmlStr);
+			console.log(xmlDoc);
+			
+			$(xmlDoc).find("friend").each(function(index, item) {
+				console.log($(item).find("name").text());
+				console.log($(item).find("phone").text());
+			});
+		}
+		
+		function f_go9() {
+			fetch("문화체육관광부 대한민국역사박물관_근현대사 구술영상 목록정보_20241008.xml")
+				.then((response) => response.text())
+				.then(xmlString => {
+					var xmlDoc = $.parseXML(xmlString); // String -> Object로 변경
+					$(xmlDoc).find("DATA_RECORD").each((index, item) => {
+						let subject = $(item).find("SUBJECT").text();
+						let info_name = $(item).find("INFO_NAME").text();
+						let data_comment = $(item).find("DATA_COMMENT").text();
+						console.log(subject);
+						console.log(info_name);
+						console.log(data_comment);
+					});
+				});
+		}
+		
+		function f_go10() {
+			var txt = $(this).text();
+			
+			if (txt === "활성화하기") {
+				$(this).text("비활성화하기");
+				$(this).parent().css("background-color", "lightgreen");
+				$(this).parent().find("span").text("활성화하기");
+			} else {
+				$(this).text("활성화하기");
+				$(this).parent().css("background-color", "pink");
+				$(this).parent().find("span").text("비활성화하기");
+			}
+		}
+	</script>
+	<style type="text/css">
+		p, h2 {
+			border: 1px solid green;
+			padding: 5px;
+		}
+		
+		.high-light {
+			background-color: yellow;
+			font-weight: bold;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>jQuery 활용</h1>
+	<hr>
+	
+	<button class="btn btn-primary">배열</button>
+	<button class="btn btn-primary">배열2</button>
+	<button class="btn btn-primary">addClass</button>
+	<button class="btn btn-primary">extend</button>
+	<button class="btn btn-primary">filter</button>
+	<button class="btn btn-primary">filter(end)</button>
+	<button class="btn btn-primary">위치(eq, first, last)</button>
+	<button class="btn btn-primary">XML 파싱</button>
+	<button class="btn btn-primary">XML 파싱(공공데이터)</button>
+	<hr>
+	
+	<div>
+		<span>비활성화</span>
+		<button>활성화하기</button>
+	</div>
+	<hr>
+	
+	<p>p1</p>
+	<p>p2</p>
+	<p>p3</p>
+	<p>p4</p>
+	<p>p5</p>
+	<hr>
+	
+	<h2>제목1</h2>
+	<h2>제목2</h2>
+	<h2>제목3</h2>
+	<h2>제목4</h2>
+	<h2>제목5</h2>
+	<hr>
+	
+	<div id="here">결과 표시 영역</div>
+</body>
+</html>
