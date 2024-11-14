@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery4</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<style type="text/css">
+	#here {
+		border: 1px solid gray;
+	}
+	
+	img {
+		border: 1px dotted gray;
+	}
+	
+	.aa {
+		color: white;
+		background-color: aquamarine;
+	}
+	
+	.bb {
+		color: white;
+		background-color: chocolate;
+	}
+	</style>
+	<script type="text/javascript">
+		// HTML load 끝나면 수행
+		$(function() {
+			$("button:nth-of-type(1)").click(f_call1);
+			$("button:nth-of-type(2)").click(f_call2);
+			$("button:nth-of-type(3)").click(f_call3);
+			$("button:nth-of-type(4)").click(f_call4);
+			
+			// 이벤트 연결 범위 한정; #here2의 img 클릭 시
+			// 초기에는 img 객체 없음, 버튼 클릭 후 img 객체가 추가되면 이벤트 적용
+			// 부모의 이벤트에 연결하고 자식 이벤트에 적용
+			$("#here2").on("click", "img", function() {
+				alert($(this).attr("src"));
+			});
+			
+			// 입력 양식 이벤트; change, keypress 등
+			$("input:nth-of-type(1)").on("keypress", function() {
+				var str = $(this).val() // val() : value 속성 얻기
+				$("#here2").text(str + ", 자릿수 : " + str.length); 
+			});
+			
+// 			$("h1").click(function() {});
+			// 이벤트와 이벤트 핸들러를 연결하는 함수 : on()
+			$("h1").on("click", function() {
+				$("<h2>click 발생</h2>").prependTo("#here");
+				$("h1").off(); // 이벤트 제거; 'click 발생' 한 번만 실행되고 안됨
+			});
+			
+			// hover : mouseenter, mouseleave
+			var eventObj = { mouseenter: function() { $(this).addClass("aa") },
+					mouseleave: function() { $(this).removeClass("aa") } };
+// 			$("h1").on(eventObj);
+			$("h1").hover(function() { $(this).addClass("bb") },
+					function() { $(this).removeClass("bb") });
+		});
+		
+		function f_call1() {
+			console.log("첫 번째 버튼 클릭");
+			$("<img src='../lab_jQuery/images/img4.jpg'>").appendTo("#here");
+		}
+		
+		function f_call2() {
+			// first() == eq(1)
+			$("img").first().appendTo("#here");
+		}
+		
+		var index = -1;
+		function f_call3() {
+			console.log(index);
+			// 계속 증가하면서 복제하기
+			index++;
+			var obj = $("img").eq(index).clone();
+			$(obj).appendTo("#here");			
+		}
+		
+		function f_call4() {
+			var obj = `
+				<img alt="img1" src="../lab_jQuery/images/img4.jpg">
+				<img alt="img1" src="../lab_jQuery/images/img5.jpg">
+				<img alt="img1" src="../lab_jQuery/images/img6.jpg">
+			`;
+			$(obj).appendTo("#here2");
+		}
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			$("form").on("submit", f_submit);
+		});
+		
+		function f_submit(event) {
+			var id = $("#userid").val();
+			var pw = $("#userpw").val();
+			
+			if (id === 'hr' && pw === '1234') {
+				return;
+			} else {
+				alert('id 또는 pw 오류');
+				event.preventDefault(); // 기본 이벤트 제거
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>jQuery 연습</h1>
+	<hr>
+	
+	<button class="btn btn-primary">이미지 추가</button>
+	<button class="btn btn-primary">문서 객체 이동</button>
+	<button class="btn btn-primary">문서 객체 복제</button>
+	<button class="btn btn-primary">이미지 넣기</button>
+	<hr>
+	
+	<input maxlength="10">
+	<hr>
+	
+	<!-- name은 주로 서버 프로그램에서 parameter로 사용 -->
+	<form action="jQuery.html" method="get">
+		<input id="userid" name="user_id" value="hr">
+		<input id="userpw" name="user_pw" value="1234">
+		<input type="submit" value="로그인하기">
+	</form>
+	<hr>
+	
+	<div id="here">
+		<img alt="img1" src="../lab_jQuery/images/img1.jpg">
+		<img alt="img2" src="../lab_jQuery/images/img2.jpg">
+		<img alt="img3" src="../lab_jQuery/images/img3.jpg">
+	</div>
+	<hr>
+	
+	<div id="here2">결과 표시 영역</div>
+</body>
+</html>

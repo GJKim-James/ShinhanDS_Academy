@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery5</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(() => {
+			// JavaScript 이용하기(Ajax)
+			$("button:nth-of-type(1)").on("click", f_ajax1);
+			$("button:nth-of-type(2)").on("click", f_ajax2);
+			$("button:nth-of-type(3)").on("click", f_ajax3);
+			$("button:nth-of-type(4)").on("click", f_ajax4);
+			
+			// jQuery 이용하기(Ajax)
+			$("button:nth-of-type(5)").on("click", f_ajax5);
+			$("button:nth-of-type(6)").on("click", f_ajax6);
+			$("button:nth-of-type(7)").on("click", f_ajax7);
+			$("button:nth-of-type(8)").on("click", f_ajax8);
+			$("button:nth-of-type(9)").on("click", f_ajax9);
+			$("button:nth-of-type(10)").on("click", f_ajax10);
+			$("button:nth-of-type(11)").on("click", f_ajax11);
+		});
+		
+		function f_ajax1() {
+			// 객체 생성
+			var request = new XMLHttpRequest();
+			
+			// 요청 보내기
+			request.open("get", "jQuery4.html", false); // false : 동기, true : 비동기
+			
+			// Ajax 수행; 서버로 간다.
+			request.send();
+			
+			// 응답 결과 출력
+			$("#here").html(request.responseText);
+		}
+		
+		function f_ajax2() {
+			// 객체 생성
+			var request = new XMLHttpRequest();
+			
+			// 데이터가 배달된 것을 onreadystatechange 이벤트로 확인
+			request.onreadystatechange = function(event) {
+				/* readyState 속성
+				0 : request 객체를 만들었지만 open() 메소드로 초기화하지 않았음
+				1 : request 객체를 만들고 초기화했지만 send() 메소드가 사용되지 않음
+				2 : send() 메소드를 사용했지만 아직 데이터를 받지 못함
+				3 : 데이터의 일부만을 받음
+				4 : 모든 데이터를 받음
+				*/
+				console.log(request.readyState);
+				/* HTTP Status Code
+				1XX : 처리중
+				2XX : 성공
+				3XX : 리다이렉트
+				4XX : 클라이언트 오류
+				5XX : 서버 오류
+				*/
+				if (request.readyState == 4 && request.status == 200) {
+					$("#here").html(request.responseText);
+				}
+			};
+			
+			// 요청 보내기
+			request.open("get", "../../emp/empAll.jsp", true); // false : 동기, true : 비동기
+			
+			// Ajax 수행; 서버로 간다.
+			// 비동기이므로 응답을 기다리지 않음.
+			request.send();
+			
+			// 응답 결과 출력
+// 			$("#here").html("아무거나" + request.responseText);
+		}
+		
+		function f_ajax3() {
+			location.href = "../../emp/empAll.jsp";
+		}
+		
+		function f_ajax4() {
+			var request = new XMLHttpRequest();
+			
+			request.onreadystatechange = (event) => {
+				console.log(request.readyState, request.status);
+				
+				if (request.readyState == 4 && request.status == 200) {
+// 					console.log(request.responseText);
+					console.log(JSON.parse(request.responseText));
+				}
+			};
+			request.open("get", "data/DeepQA_data.json", true);
+			request.send();
+		}
+		
+		function f_ajax5() {
+			$("#here").load("jQuery3.html");
+		}
+		
+		function f_ajax6() {
+			var url = "jQuery3.html";
+			var data = {}; // 없어도 된다.
+			$.get(url, data, callbackMethod);
+			
+			var url = "data/DeepQA_data.json";
+			$.get(url, callbackMethod2);
+		}
+		
+		function callbackMethod(data, status, xhr) {
+			console.log(status); // success
+			console.log(xhr);
+			$("#here").html(data);
+		}
+		
+		function callbackMethod2(response, status, xhr) {
+			console.log(response);
+			console.log(status); // success
+			console.log(xhr);
+			
+			// json 데이터에 접근하기
+			$("#here").append(response.data[2].title);
+		}
+		
+		function f_ajax7() {
+			var url = "jQuery3.html";
+			var data = {}; // 없어도 된다.
+			$.post(url, data, callbackMethod);
+			
+			var url = "data/DeepQA_data.json";
+			$.post(url, callbackMethod2);
+		}
+		
+		function f_ajax8() {
+			var url = "jQuery3.html";
+			var data = {}; // 없어도 된다.
+			
+			$.ajax({
+				"url": url,
+				type: "get",
+				data: {},
+				success: function(response, status, xhr) {
+					console.log(response, status, xhr);
+					$("#here").html(response);
+				}
+			});
+			
+			$.ajax({
+				"url": "data/DeepQA_data.json",
+				type: "post",
+				data: {},
+				success: function(response, status, xhr) {
+					console.log(response, status, xhr);
+					$("#here").before(response.data[2].title);
+				}
+			});
+		}
+
+		function f_ajax9() {
+			var url = "data/DeepQA_data.json";
+			$.getJSON(url, (response) => {
+				$("#here").html(response.data[2].title);
+			});
+		}
+		
+		function f_ajax10() {
+			var url = "js/external.js";
+			$.getScript(url, function() {
+				call();
+				call2();
+			});
+		}
+		
+		function f_ajax11() {
+			var obj = {name: "홍길동", age: 20, toJSON: function() {
+				return {나이: "스무살"};
+			}};
+			console.log(JSON.stringify(obj));
+			
+			var url = "https://api.bithumb.com/public/ticker/All";
+			var options = {};
+			fetch(url, options)
+				.then((response) => {
+					console.log(response);
+					return response.json();
+				})
+				.then((response) => {
+// 					console.log(response);
+					console.log(response.data.BTC["closing_price"]);
+				});
+		}
+	</script>
+</head>
+<body>
+	<h1>비동기 통신(Ajax)</h1>
+	<hr>
+	
+	<h2>JavaScript 이용</h2>
+	<button class="btn btn-success">동기 통신</button>
+	<button class="btn btn-success">비동기 통신(jsp 가져오기)</button>
+	<button class="btn btn-success">전통적 방식(page 이동)</button>
+	<button class="btn btn-success">비동기 통신(데이터 가져오기)</button>
+	<hr>
+	
+	<h2>jQuery 이용</h2>
+	<button class="btn btn-success">(selector).load()</button>
+	<button class="btn btn-success">get()</button>
+	<button class="btn btn-success">post()</button>
+	<button class="btn btn-success">★ajax()★</button>
+	<button class="btn btn-success">getJSON()</button>
+	<button class="btn btn-success">getScript()</button>
+	<button class="btn btn-success">★fetch()(빗썸 데이터)★</button>
+	<hr>
+	
+	<div id="here">결과 표시 영역</div>
+</body>
+</html>
