@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
 #loginInfo {
 	background-color: beige;
@@ -14,8 +15,18 @@
 a {
 	margin-left: 10px;
 }
+strong {
+	text-decoration: underline;
+}
 </style>
 <div id="loginInfo">
-	${loginMember.member_name == null ? "손님" : loginMember.member_name} 님 환영합니다.
+	<c:if test="${loginMember.member_name == null}">
+		손님이시군요
+	</c:if>
+	<c:if test="${loginMember.member_name != null}">
+		<strong>${loginMember.member_name}</strong> 님 환영합니다.
+	</c:if>
+	<%-- ${loginMember.member_name == null ? "손님" : loginMember.member_name} 님 환영합니다. --%>
+	
 	<a href="${path}/auth/logout.do" class="btn btn-warning">로그아웃</a>
 </div>
