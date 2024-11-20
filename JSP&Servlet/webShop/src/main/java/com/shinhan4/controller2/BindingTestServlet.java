@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/bind1.go")
+@WebServlet(urlPatterns = "/bind1.go", loadOnStartup = 1)
 public class BindingTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public BindingTestServlet() {
+		System.out.println("BindingTestServlet 생성자");
+	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
