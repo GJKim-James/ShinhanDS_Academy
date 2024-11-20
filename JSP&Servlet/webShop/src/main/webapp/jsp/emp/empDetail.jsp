@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- 반복문 사용할 수 있게 해줌 --%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>직원 정보 상세 보기 및 수정</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<style type="text/css">
 	input[required], select[required] {
 		background-color: lightyellow;
@@ -21,6 +17,8 @@
 </head>
 <body>
 	<div class="container mt-3">
+		<%-- include 디렉티브 태그느는 jsp를 합쳐서 컴파일한다. --%>
+		<%@ include file="../header.jsp" %>
 		<h2>직원 정보 상세 보기 및 수정</h2>
 
 		<form action="empdetail.do" method="post">

@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8" session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>직원 목록</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<style type="text/css">
 	.container {
 		text-align: center;
@@ -20,6 +16,9 @@
 		<%-- <p>로그인한 Member 정보(request) : ${loginMember1}</p> --%>
 		<p>로그인한 Member 정보(session) : ${loginMember2}</p>
 		<%-- <p>로그인한 Member 정보(context) : ${loginMember3}</p> --%>
+		
+		<%-- include 디렉티브 태그느는 jsp를 합쳐서 컴파일한다. --%>
+		<%@ include file="../header.jsp" %>
 		
 		<h1>직원 목록</h1>
 		<%-- ${empDatas} --%>
@@ -41,7 +40,6 @@
 				<th>POST 요청</th>
 			</tr>
 			
-			<c:set var="path" value="${pageContext.request.servletContext.contextPath}"></c:set>
 			<c:forEach items="${empDatas}" var="emp">
 				<tr>
 					<td><a href="${path}/empdetail.do?empid=${emp.employee_id}">${emp.employee_id}</a></td>
