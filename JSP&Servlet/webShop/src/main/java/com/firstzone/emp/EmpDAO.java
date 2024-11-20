@@ -273,7 +273,8 @@ public class EmpDAO {
 	// 9.부서, 직책, 급여, 입사일 조건으로 조회 : WHERE DEPARTMENT_ID = ? AND JOB_ID = ? AND SALARY >= ? AND HIRE_DATE >= ?
 	public List<EmpDTO> selectByCondition(Map<String, Object> map) {
 		String sql = """
-				SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = ? AND JOB_ID = ? AND SALARY >= ? AND HIRE_DATE >= ?
+				SELECT * FROM EMPLOYEES WHERE ('-1' = ? or DEPARTMENT_ID = ?) AND ('-1' = ? or JOB_ID = ?) 
+				AND SALARY >= ? AND HIRE_DATE >= ?
 				""";
 
 		Connection conn = DBUtil.getConnection();
@@ -284,10 +285,13 @@ public class EmpDAO {
 		try {
 			st = conn.prepareStatement(sql); // SQL문 준비
 			
+			// Key 이름 설정 시 대소문자 구분 주의!
 			st.setInt(1, (Integer) map.get("DEPARTMENT_ID"));
-			st.setString(2, (String) map.get("JOB_ID"));
-			st.setDouble(3, (Double) map.get("SALARY"));
-			st.setDate(4, (Date) map.get("HIRE_DATE"));
+			st.setInt(2, (Integer) map.get("DEPARTMENT_ID"));
+			st.setString(3, (String) map.get("JOB_ID"));
+			st.setString(4, (String) map.get("JOB_ID"));
+			st.setDouble(5, (Double) map.get("SALARY"));
+			st.setDate(6, (Date) map.get("HIRE_DATE"));
 			
 			rs = st.executeQuery(); // DB에 가서 SQL문 실행하고 결과(ResultSet 형태) 가져오기
 
