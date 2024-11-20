@@ -32,6 +32,7 @@
 	<div class="container mt-3">
 		<%-- include 디렉티브 태그느는 jsp를 합쳐서 컴파일한다. --%>
 		<%@ include file="../header.jsp" %>
+		
 		<h2>직원 등록 by ${loginMember2.member_name}</h2>
 
 		<form action="empinsert.do" method="post">

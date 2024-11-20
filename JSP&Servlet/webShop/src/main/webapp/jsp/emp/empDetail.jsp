@@ -19,6 +19,7 @@
 	<div class="container mt-3">
 		<%-- include 디렉티브 태그느는 jsp를 합쳐서 컴파일한다. --%>
 		<%@ include file="../header.jsp" %>
+		
 		<h2>직원 정보 상세 보기 및 수정</h2>
 
 		<form action="empdetail.do" method="post">
