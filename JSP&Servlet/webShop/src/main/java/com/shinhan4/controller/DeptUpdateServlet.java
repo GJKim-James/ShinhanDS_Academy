@@ -34,7 +34,8 @@ public class DeptUpdateServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 한글 인코딩
-		request.setCharacterEncoding("UTF-8");
+		// 2024. 11. 20 필터로 작성
+//		request.setCharacterEncoding("UTF-8");
 		
 		int dept_id = Integer.parseInt(request.getParameter("dept_id"));
 		String dept_name = request.getParameter("dept_name");

@@ -51,7 +51,8 @@ public class EmpUpdateServlet extends HttpServlet {
 		System.out.println("요청 방식 : " + request.getMethod());
 		
 		// 한글 인코딩
-		request.setCharacterEncoding("UTF-8");
+		// 2024. 11. 20 필터로 작성
+//		request.setCharacterEncoding("UTF-8");
 		
 		EmpDTO empDTO = makeEmp(request);
 		EmpService empService = new EmpService();

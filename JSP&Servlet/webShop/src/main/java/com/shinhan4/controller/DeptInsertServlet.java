@@ -28,7 +28,8 @@ public class DeptInsertServlet extends HttpServlet {
 		System.out.println("deptinsert.do POST 요청");
 		
 		// 한글 인코딩(POST 방식은 parameter가 URI로 오지 않고, 요청 문서의 body에 인코딩되지 않은 상태로 포함되어 온다.)
-		request.setCharacterEncoding("UTF-8");
+		// 2024. 11. 20 필터로 작성
+//		request.setCharacterEncoding("UTF-8");
 		
 		// deptinsert.jsp에서 form 태그의 name 값 받아오기
 		int department_id = Integer.parseInt(request.getParameter("department_id"));

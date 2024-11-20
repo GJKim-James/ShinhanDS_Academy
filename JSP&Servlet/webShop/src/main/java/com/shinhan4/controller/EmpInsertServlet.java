@@ -48,7 +48,8 @@ public class EmpInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/empinsert.do POST 요청");
 		
-		request.setCharacterEncoding("UTF-8");
+		// 2024. 11. 20 필터로 작성
+//		request.setCharacterEncoding("UTF-8");
 		
 		int employee_id = Integer.parseInt(request.getParameter("employee_id"));
 		String first_name = request.getParameter("first_name");
