@@ -29,7 +29,7 @@ public class JsonTestServlet extends HttpServlet {
 		try {
 			JSONObject jsonObj = (JSONObject) parser.parse(json);
 			
-			System.out.println("==================== JSONObject로 파싱 후 데이터 추출 ====================");
+			System.out.println("========== JSONObject로 파싱 후 데이터 추출 ==========");
 			// JSON(String) => JSONObject => String => Integer
 			Integer deptid = Integer.parseInt((String) jsonObj.get("deptid"));
 			String deptname = (String) jsonObj.get("deptname");
@@ -43,7 +43,6 @@ public class JsonTestServlet extends HttpServlet {
 					.location_id(locationid)
 					.build();
 			System.out.println("deptDTO : " + deptDTO);
-			System.out.println("====================================================================");
 			
 			DeptService deptService = new DeptService();
 			result = deptService.insert(deptDTO);
