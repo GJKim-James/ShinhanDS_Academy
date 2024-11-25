@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#container {
+	font-family: 'Jua', sans-serif;
+}
+
+table, tr, th, td {
+	margin: 0 auto;
+	border: 1px solid gray;
+	border-collapse: collapse;
+	padding: 10px;
+	font-family: 'Jua', sans-serif;
+	text-align: center;
+/* 	font-weight: bold; */
+/* 	font-style: normal; */
+}
+
+th {
+	background-color: #ccc;
+	text-align: center;
+}
+
+td {
+	background-color: white;
+	text-align: center;
+}

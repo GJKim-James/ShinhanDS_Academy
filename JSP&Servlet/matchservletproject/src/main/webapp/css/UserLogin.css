@@ -1,0 +1,194 @@
+@charset "UTF-8";
+legend {
+    display: none;
+}
+
+.main_login {
+    overflow: hidden;
+    width: 605px;
+    margin: 0 auto;
+    padding-bottom: 40px
+}
+
+.main_login h2 {
+    padding: 65px 0 0 0;
+    text-align: center;
+}
+
+.main_login h2 a {
+    display: inline-block;
+    width: 340px;
+    height: 45px;
+    background-size: 266px 45px;
+    text-decoration-line: none;
+    font-family: 'Jua', sans-serif;
+    font-size: 50px;
+    color: #b5d692;
+}
+
+.main_login fieldset {
+    position: relative;
+    width: 340px;
+    margin: 0 auto;
+    padding-top: 8px /*27px*/;
+    border: none;
+}
+
+.main_login fieldset .id_field {
+    position: relative;
+    height: 60px;
+    overflow: hidden
+}
+
+.main_login fieldset .pw_field {
+    position: relative;
+    height: 60px;
+    margin-top: 2px
+}
+
+.main_login fieldset .id_field #uid_label,
+.main_login fieldset .pw_field #pass_label {
+    position: absolute;
+    z-index: 2;
+    top: 18px;
+    left: 14px;
+    width: 325px;
+    color: #999;
+    font-size: 14px;
+    padding: 0;
+    line-height: 120%;
+}
+
+.main_login fieldset .id_field input,
+.main_login fieldset .pw_field input {
+    width: 325px;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 0 0 13px;
+    border: 1px solid #bbb;
+    font-family: 'Jua', sans-serif;
+    font-size: 15px;
+    color: #111;
+    border-radius: 3px;
+    background: #fff;
+    -webkit-appearance: none;
+}
+
+.main_login fieldset .id_field input[type=text]::-ms-clear {
+    display: none
+}
+
+.main_login fieldset .pw_field input[type=password]::-ms-reveal {
+    display: none
+}
+
+.main_login fieldset input:focus {
+    outline: none;
+    border: 1px solid #b5d692;
+}
+
+.main_login fieldset .id_field input {
+    ime-mode: disabled /* ime-mode? IME(Input Method Editor)의 상태를 반환하거나 설정
+       ime-mode: active -> 값을 입력하면 기본적으로 한글이 입력
+       ime-mode: inactive -> 값을 입력하면 기본적으로 영문이 입력
+       ime-mode: disabled -> 한영키를 눌러도 한글로 변환하지 않고 영문만 입력 가능
+     */
+}
+
+.main_login fieldset .login_btn {
+    display: block;
+    padding-top: 10px;
+    margin-bottom: 3px;
+}
+
+.main_login fieldset .login_btn input[type=submit] {
+    overflow: visible;
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Jua', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #fff;
+    background: #b5d692
+}
+
+.account_area {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Jua', sans-serif;
+}
+
+.account_area a {
+    display: inline-block;
+    font-family: 'Jua', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #777;
+}
+
+.account_area .find_pw {
+    padding-bottom: 0px;
+}
+
+.account_area a:hover {
+    text-decoration: none;
+}
+
+.account_area span.bar {
+    background-color: #ddd;
+    margin: 3px 13px;
+    height: 20px;
+    width: 1px;
+    display: inline-block;
+    text-indent: -9999em;
+    vertical-align: -2px;
+}
+
+.signup_area {
+    margin: 20px 0 0;
+    overflow: hidden;
+}
+
+.signup_area a {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 7px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.signup_area a em {
+    position: relative;
+    top: 14px;
+    left: 14px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-indent: -9999px;
+}
+
+.signup_area .kakao {
+    font-size: 14px;
+    color: #000;
+    background-color: #fee500;
+    text-align: center;
+}
+
+.signup_area .kakao em {
+    position: absolute;
+    width: 25px;
+    height: 23px;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24'%3e%3cdefs%3e%3cpath id='a' d='M0 0h24v23.1H0z'/%3e%3c/defs%3e%3cg fill='none' fill-rule='evenodd'%3e%3cmask id='b' fill='%23fff'%3e%3cuse xlink:href='%23a'/%3e%3c/mask%3e%3cpath fill='%23000' d='M12 2.9c-5.5 0-10 3.4-10 7.6 0 2.6 1.7 4.9 4.4 6.2l-1.1 4c-.1.4.3.6.6.4l4.8-3.1H12c5.5 0 10-3.3 10-7.5s-4.5-7.6-10-7.6' mask='url(%23b)'/%3e%3c/g%3e%3c/svg%3e") 50% 50% no-repeat;
+    background-size: 100% 100%;
+}

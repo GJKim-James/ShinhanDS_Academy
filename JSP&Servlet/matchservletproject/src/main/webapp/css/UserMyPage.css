@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#container {
+	font-family: 'Jua', sans-serif;
+}
+
+table, caption, tr, th, td {
+	margin: 0 auto;
+	border: 1px solid gray;
+	border-collapse: collapse;
+	padding: 10px;
+	font-family: 'Jua', sans-serif;
+	text-align: center;
+/* 	font-weight: bold; */
+/* 	font-style: normal; */
+}
+
+caption {
+	caption-side: top;
+	text-align: center;
+	font-size: 1em;
+	color: white;
+	padding: 10px 0 10px 0;
+	background-color: #b5d692;
+/* 	background: radial-gradient(#ccc, #b5d692); */
+}
+
+th {
+	background-color: #ccc;
+}
+
+td {
+	background-color: white;
+	text-align: center;
+}
