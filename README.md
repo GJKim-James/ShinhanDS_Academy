@@ -20,8 +20,8 @@
 2. 환경변수 JAVA_HOME 수정
 3. 롬복(lombok.jar) 설치 (STS.exe 있는 경로)
 4. sts.ini에 추가
-  - -vm
-  - C:\shinhan4\install\openjdk\openjdk-11.0.25\bin\javaw.exe
+    - -vm
+    - C:\shinhan4\install\openjdk\openjdk-11.0.25\bin\javaw.exe
 7. STS 실행
 8. Spring Legacy Project를 생성...실패...STS 닫기
 9. C:\shinhan4\work\sts3-workspace\.metadata\.plugins\org.springsource.ide.eclipse.commons.content.core 경로에 https-content.xml 파일 넣기
