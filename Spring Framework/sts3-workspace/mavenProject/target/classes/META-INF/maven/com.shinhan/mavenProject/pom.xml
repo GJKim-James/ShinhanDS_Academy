@@ -22,9 +22,31 @@
 		<!-- <> 안 이름은 사용자 마음, but 보통 groupId, artifactId 같이 사용 -->
 		<!-- 5.3.5를 ${org.springframework-version}로 읽어서 사용 -->
 		<org.springframework-version>5.3.5</org.springframework-version>
+		<!-- Spring AOP 라이브러리에서 사용 -->
+		<org.aspectj-version>1.9.6</org.aspectj-version>
 	</properties>
 
 	<dependencies>
+		<!-- Spring AOP 라이브러리 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

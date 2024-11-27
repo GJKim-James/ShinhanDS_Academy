@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 
+	Spring 이용해서 JDBC 프로그램
+	1. 라이브러리 준비(OracleDB, Spring-jdbc) maven 관리 pom.xml 설정
+	2. 설정 파일 만든다. (bean...DB 정보 설정)
+	3. DAO에서
+	   @Autowired
+	   DataSource ds
+	4. ds로 DB 연결(conn = ds.getConnection();)
+	5. @Repository : @Component + DAO 역할
+	 -->
+	 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="hr" />
+	</bean>
+	
+	<!-- 
+	설정한 패키지(base-package)에서
+	@Autowired, @Component, @Repository, @Service, @Controller 인식(scan)
+	 -->
+	<context:component-scan base-package="com.shinhan.mavenProject.section6"></context:component-scan>
+</beans>
