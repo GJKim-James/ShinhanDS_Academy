@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Setter Injection -->
+	<bean id="car" class="com.shinhan.mavenProject.section4.CarVO">
+		<property name="model" value="ABC"></property>
+		<property name="price" value="1000"></property>
+		<property name="color" value="black"></property>
+	</bean>
+	
+	<!-- Setter Injection -->
+	<bean id="license1" class="com.shinhan.mavenProject.section4.LicenseVO">
+		<property name="title" value="정보처리기사"></property>
+		<property name="year" value="2024"></property>
+	</bean>
+	<bean id="license2" class="com.shinhan.mavenProject.section4.LicenseVO">
+		<property name="title" value="SQLD"></property>
+		<property name="year" value="2021"></property>
+	</bean>
+	
+	<!-- Constructor Injection -->
+	<bean id="book1" class="com.shinhan.mavenProject.section4.BookVO">
+		<constructor-arg name="title" value="이것이 자바다"></constructor-arg>
+		<constructor-arg name="price" value="50000"></constructor-arg>
+		<constructor-arg name="kind" value="IT"></constructor-arg>
+	</bean>
+	<!-- Setter Injection -->
+	<bean id="book2" class="com.shinhan.mavenProject.section4.BookVO">
+		<property name="title" value="자바로 웹을 다루는 기술"></property>
+		<property name="price" value="45000"></property>
+		<property name="kind" value="IT"></property>
+	</bean>
+	
+	
+	
+	<!-- Setter Injection -->
+	<bean id="person1" class="com.shinhan.mavenProject.section4.PersonVO">
+		<property name="name" value="김광진"></property>
+		<property name="age" value="28"></property>
+		<property name="car" ref="car"></property>
+		<property name="major">
+			<list>
+				<value>컴퓨터공학과</value>
+				<value>경제학과</value>
+			</list>
+		</property>
+		<property name="licenseList">
+			<list>
+				<ref bean="license1"/>
+				<ref bean="license2"/>
+			</list>
+		</property>
+		<property name="bookMap">
+			<map>
+				<entry>
+					<key>
+						<value>내 책1</value>
+					</key>
+					<ref bean="book1"/>
+				</entry>
+				<entry>
+					<key>
+						<value>내 책2</value>
+					</key>
+					<ref bean="book2"/>
+				</entry>
+			</map>
+		</property>
+		<property name="friends">
+			<set>
+				<value>김광진</value>
+				<value>정진</value>
+			</set>
+		</property>
+		<property name="myProfile">
+			<props>
+				<prop key="email">abc@naver.com</prop>
+				<prop key="phone">010-1234-5678</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!--
+	autowire : 자동으로 DI 한다.
+	byName : Property name과 같은 name을 갖는 bean 객체를 자동으로 넣는다.(VO의 field 이름과 bean의 id 이름이 같을 때)
+	byType : Property type과 같은 type을 갖는 bean 객체를 자동으로 넣는다.(같은 타입의 bean이 여러 개인 경우는 불가)
+	 -->
+	 <!-- "car"로 이름이 동일한 객체 존재 -->
+	<bean id="person2" class="com.shinhan.mavenProject.section4.PersonVO" autowire="byName" scope="singleton"></bean>
+<!-- 	<bean id="person2" class="com.shinhan.mavenProject.section4.PersonVO" autowire="byType"></bean> -->
+
+</beans>
