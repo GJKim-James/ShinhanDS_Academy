@@ -34,20 +34,26 @@ public class UserMatchApplyServlet extends HttpServlet {
 		String match_date = request.getParameter("match_date");
 		String match_place = request.getParameter("match_place");
 		
-		// 이미 신청한 경기인지 중복 확인!!!!!
-		
-		MatchInfoDTO matchInfoDTO = new MatchInfoDTO().builder()
-				.match_date(match_date)
-				.match_place(match_place)
-				.build();
+		// 이미 신청한 경기인지 중복 확인
 		UserService userService = new UserService();
-		int result = userService.applyMatch(match_no, userDTO, matchInfoDTO);
+		int dup_result = userService.selectDuplicateChk(match_no, userDTO);
 		
+		int result;
 		String message = "";
-		if (result == 1) {
-			message = "해당 경기를 신청했습니다.";
+		if (dup_result == 1) {
+			message = "이미 신청한 경기입니다.";
 		} else {
-			message = "해당 경기를 신청하지 못했습니다.";
+			MatchInfoDTO matchInfoDTO = new MatchInfoDTO().builder()
+					.match_date(match_date)
+					.match_place(match_place)
+					.build();
+			result = userService.applyMatch(match_no, userDTO, matchInfoDTO);
+			
+			if (result == 1) {
+				message = "해당 경기를 신청했습니다.";
+			} else {
+				message = "해당 경기를 신청하지 못했습니다.";
+			}
 		}
 		request.setAttribute("message", message);
 		request.getRequestDispatcher("jsp/redirect.jsp").forward(request, response);
