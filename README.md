@@ -9,6 +9,8 @@
 - WebFrontEnd/webapp/example : 교재 각 장마다의 되새김 문제 풀이
   #### JSP/Servlet
 - 교재 : '자바 웹을 다루는 기술', 길벗, 이병승 지음 (2024. 11. 14. 목 ~ 2024. 11. 25. 월)
+- matchservletproject : Servlet Web 개인 프로젝트(축구 경기 신청 프로그램)
+- webShop : JSP/Servlet 수업
   #### Spring Framework
 - 교재 : '자바 웹을 다루는 기술', 길벗, 이병승 지음 (2024. 11. 26. 화 ~ 2024. 12. 05. 목)
 - 개발 환경
