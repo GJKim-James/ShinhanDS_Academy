@@ -5,9 +5,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>부서 목록 조회</title>
+	<script type="text/javascript">
+		var resultMessage = "${result}";
+		
+		if (resultMessage != "") {
+			alert(resultMessage);
+		}
+	</script>
 	<style type="text/css">
 	.container {
 		text-align: center;
+		margin-top: 10px;
 	}
 	
 	hr {
@@ -32,11 +40,12 @@
 <body>
 	<div class="container">
 		<%@ include file="../common/header.jsp" %>
+		<a href="${contextPath}/dept/insert.do" class="btn btn-success">부서 등록</a>
 		<hr>
 		
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-hover table-bordered border-secondary">
 			<caption>부서 목록</caption>
-			<tr>
+			<tr class="table-info">
 				<th>부서 번호</th>
 				<th>부서 이름</th>
 				<th>매니저 번호</th>

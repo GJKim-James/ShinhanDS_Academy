@@ -13,7 +13,8 @@
 	border-radius: 10px;
 	width: 300px;
 	float: right;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
+	text-align: center;
 }
 a {
 	margin-left: 10px;

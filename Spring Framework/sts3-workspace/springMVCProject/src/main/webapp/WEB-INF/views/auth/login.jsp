@@ -10,6 +10,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<title>로그인 화면</title>
+	<script type="text/javascript">
+		<%-- CRUD 작업 후 결과 alert --%>
+		var resultMessage = "${result}";
+		if (resultMessage != "") {
+			alert(resultMessage);
+		}
+	</script>
 	<style type="text/css">
 	input[type="submit"] {
 		margin: 10px;
