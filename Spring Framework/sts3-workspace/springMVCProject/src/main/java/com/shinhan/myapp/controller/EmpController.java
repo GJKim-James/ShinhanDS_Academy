@@ -147,5 +147,45 @@ public class EmpController {
 		
 		return "redirect:list.do";
 	}
+	
+	// 급여로만 조회(Ajax)
+	@GetMapping("/listBySalary.do")
+	public String listBySalary(int salary, Model model) {
+		model.addAttribute("empList", empService.selectBySalary(salary));
+		
+		return "emp/empListTable";
+	}
+	
+	// 직책으로만 조회(Ajax)
+	@GetMapping("/listByJobId.do")
+	public String listByJobId(String job_id, Model model) {
+		model.addAttribute("empList", empService.selectByJobId(job_id));
+		
+		return "emp/empListTable";
+	}
+	
+	// 부서로만 조회(Ajax)
+	@GetMapping("/listByDeptId.do")
+	public String listByDeptId(int department_id, Model model) {
+		model.addAttribute("empList", empService.selectByDeptId(department_id));
+		
+		return "emp/empListTable";
+	}
+	
+	// 직책Join(List) 조회(Ajax)
+	@GetMapping("/listByJobJoin.do")
+	public String listByJobJoin(String job_id, Model model) {
+		model.addAttribute("empList", empService.selectByJobJoin(job_id));
+		
+		return "emp/empListTable2";
+	}
+	
+	// 직책Join(Map) 조회(Ajax)
+	@GetMapping("/listByJobJoinMap.do")
+	public String listByJobJoinMap(String job_id, Model model) {
+		model.addAttribute("empList", empService.selectByJobJoinMap(job_id));
+		
+		return "emp/empListTable2";
+	}
 
 }

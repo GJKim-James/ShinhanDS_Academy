@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmpService {
 	
+	// @Autowired : type이 같으면 injection, 같은 타입이 여러 개 있을 경우 이름이 같으면 injection
+	// @Qualifier : 이름으로 injection
 	@Autowired
-	EmpDAO empDAO;
-//	EmpDAO empDAO = new EmpDAO();
+	@Qualifier("empMybatis")
+	EmpDAOInterface empDAO;
 	
 	public List<EmpDTO> selectAllService() {
 		return empDAO.selectAll();
@@ -47,6 +50,14 @@ public class EmpService {
 
 	public List<EmpDTO> selectByCondition(Map<String, Object> map) {
 		return empDAO.selectByCondition(map);
+	}
+	
+	public List<EmpDTO> selectByJobJoin(String jobId) {
+		return empDAO.selectByJobJoin(jobId);
+	}
+	
+	public List<Map<String, Object>> selectByJobJoinMap(String jobId) {
+		return empDAO.selectByJobJoinMap(jobId);
 	}
 	
 }

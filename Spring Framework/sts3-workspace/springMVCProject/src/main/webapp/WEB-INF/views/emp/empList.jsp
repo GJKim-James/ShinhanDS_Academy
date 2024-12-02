@@ -20,6 +20,11 @@
 	<div class="container">
 		<%@ include file="../common/header.jsp" %>
 		<a href="${contextPath}/auth/main.do" class="btn btn-primary">메인 화면으로</a>
+		<button id="btnSalary" class="btn btn-danger">급여로만 조회</button>
+		<button id="btnJob" class="btn btn-danger">직책으로만 조회</button>
+		<button id="btnDept" class="btn btn-danger">부서로만 조회</button>
+		<button id="btnJobJoin" class="btn btn-danger">직책Join(List) 조회</button>
+		<button id="btnJobJoinMap" class="btn btn-danger">직책Join(Map) 조회</button>
 		<hr>
 		
 		<div>
@@ -119,6 +124,13 @@
 			
 			// 이벤트 호출; 화면이 로드되자마자 디폴트로 값을 보여주기 위함(아무것도 없는 화면이 싫어서)
 			$("#btn_condition").trigger("click");
+			
+			// 급여로만 조회
+			$("#btnSalary").on("click", f_salary);
+			$("#btnJob").on("click", f_job);
+			$("#btnDept").on("click", f_dept);
+			$("#btnJobJoin").on("click", f_jobjoin);
+			$("#btnJobJoinMap").on("click", f_jobjoinmap);
 		});
 		
 		function f_ajax() {
@@ -126,16 +138,86 @@
 				url: "${contextPath}/emp/list2.do",
 				type: "GET",
 				data: {
-					"deptid": $('[name="department_id"]').val(),
-					"jobid": $('[name="job_id"]').val(),
+					"department_id": $('[name="department_id"]').val(),
+					"job_id": $('[name="job_id"]').val(),
 					"salary": $('[name="salary"]').val(),
-					"hiredate": $('[name="hire_date"]').val(),
+					"hire_date": $('[name="hire_date"]').val(),
 					"chkdate": $('[name="chkDate"]').prop("checked") // true, false
 					},
 				success: function (responseData) {
 					$("#table_here").html(responseData);
 				},
 				error: function (err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_salary() {
+			$.ajax({
+				url: "${contextPath}/emp/listBySalary.do",
+				type: "get",
+				data: {salary : $("input[name='salary']").val()},
+				success: function(res) {
+					$("#table_here").html(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_job() {
+			$.ajax({
+				url: "${contextPath}/emp/listByJobId.do",
+				type: "get",
+				data: {job_id : $("select[name='job_id']").val()},
+				success: function(res) {
+					$("#table_here").html(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_dept() {
+			$.ajax({
+				url: "${contextPath}/emp/listByDeptId.do",
+				type: "get",
+				data: {department_id : $("select[name='department_id']").val()},
+				success: function(res) {
+					$("#table_here").html(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_jobjoin() {
+			$.ajax({
+				url: "${contextPath}/emp/listByJobJoin.do",
+				type: "get",
+				data: {job_id : $("select[name='job_id']").val()},
+				success: function(res) {
+					$("#table_here").html(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_jobjoinmap() {
+			$.ajax({
+				url: "${contextPath}/emp/listByJobJoinMap.do",
+				type: "get",
+				data: {job_id : $("select[name='job_id']").val()},
+				success: function(res) {
+					$("#table_here").html(res);
+				},
+				error: function(err) {
 					alert(err);
 				}
 			});

@@ -40,6 +40,7 @@
 <body>
 	<div class="container">
 		<%@ include file="../common/header.jsp" %>
+		<a href="${contextPath}/auth/main.do" class="btn btn-primary">메인 화면으로</a>
 		<a href="${contextPath}/dept/insert.do" class="btn btn-success">부서 등록</a>
 		<hr>
 		

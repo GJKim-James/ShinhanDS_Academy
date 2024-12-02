@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class JobService {
 	
 	@Autowired
-	JobDAO jobDAO;
+	JobDAOJDBC jobDAO;
 
 //	JobDAO jobDAO = new JobDAO();
 
