@@ -21,15 +21,20 @@
 			<th>도시</th>
 			<th>나라</th>
 		</tr>
+		
+		<%-- List<Map<String, Object>> empList 결과가 아래처럼 나옴
+		[{DEPARTMENT_NAME=Executive, EMPLOYEE_ID=100, SALARY=24000, CITY=Seattle, COUNTRY_NAME=United States of America, FIRST_NAME=Steven}]
+		${emp.EMPLOYEE_ID} 이렇게 Map의 키 값을 대문자로 입력해줘야 함.
+		--%>
 		<c:forEach items="${empList}" var="emp" varStatus="status">
 			<tr>
 				<td>${ status.count }</td>
-				<td><a href="${contextPath}/emp/detail.do?empid=${emp.employee_id}">${emp.employee_id}</a></td>
-				<td>${emp.first_name}</td>
-				<td>${emp.salary}</td>
-				<td>${emp.department_name}</td>
-				<td>${emp.city}</td>
-				<td>${emp.country_name}</td>
+				<td><a href="${contextPath}/emp/detail.do?empid=${emp.EMPLOYEE_ID}">${emp.EMPLOYEE_ID}</a></td>
+				<td>${emp.FIRST_NAME}</td>
+				<td>${emp.SALARY}</td>
+				<td>${emp.DEPARTMENT_NAME}</td>
+				<td>${emp.CITY}</td>
+				<td>${emp.COUNTRY_NAME}</td>
 			</tr>
 		</c:forEach>
 	</table>

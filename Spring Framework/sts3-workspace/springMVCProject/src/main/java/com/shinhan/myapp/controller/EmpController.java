@@ -185,7 +185,7 @@ public class EmpController {
 	public String listByJobJoinMap(String job_id, Model model) {
 		model.addAttribute("empList", empService.selectByJobJoinMap(job_id));
 		
-		return "emp/empListTable2";
+		return "emp/empListTable3";
 	}
 
 }
