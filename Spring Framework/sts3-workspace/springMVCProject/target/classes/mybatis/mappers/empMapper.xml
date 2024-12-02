@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinhan.emp">
+	<select id="selectAll" resultType="empVO">
+		SELECT * FROM EMPLOYEES ORDER BY EMPLOYEE_ID
+	</select>
+	
+	<select id="selectById" parameterType="int" resultType="empVO">
+		SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = #{employee_id}
+	</select>
+	
+	<select id="selectByDeptId" parameterType="int" resultType="empVO">
+		SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = #{department_id}
+	</select>
+	
+	<select id="selectByJobId" parameterType="String" resultType="empVO">
+		SELECT * FROM EMPLOYEES WHERE JOB_ID = #{job_id}
+	</select>
+	
+	<select id="selectBySalary" parameterType="int" resultType="empVO">
+		SELECT * FROM EMPLOYEES WHERE SALARY >= #{salary}
+	</select>
+	
+	<!-- map을 파라미터로 가져오기
+	map.put("department_id", 값) ==> mybatis가 map.get(department_id)
+	map.put("job_id", 값) ==> mybatis가 map.get(job_id)
+	map.put("salary", 값) ==> mybatis가 map.get(salary)
+	map.put("hire_date", 값) ==> mybatis가 map.get(hire_date)
+	 -->
+	<!-- 동적 SQL -->
+	<select id="selectByCondition" parameterType="Map" resultType="empVO">
+		SELECT * FROM EMPLOYEES
+		WHERE SALARY >= #{salary}
+		<if test="department_id != -1">
+			AND DEPARTMENT_ID = #{department_id}
+		</if>
+		<if test="job_id != '-1'">
+			AND JOB_ID = #{job_id}
+		</if>
+		<if test="hire_date != '1900-01-01'">
+			AND HIRE_DATE >= #{hire_date}
+		</if>
+	</select>
+<!-- 	<select id="selectByCondition" parameterType="Map" resultType="empVO"> -->
+<!-- 		SELECT * FROM EMPLOYEES -->
+<!-- 		WHERE ('-1' = #{department_id} or DEPARTMENT_ID = #{department_id}) -->
+<!-- 			  AND ('-1' = #{job_id} or JOB_ID = #{job_id}) -->
+<!-- 			  AND SALARY >= #{salary} AND HIRE_DATE >= #{hire_date} -->
+<!-- 	</select> -->
+	
+	<select id="selectByJobJoin" parameterType="String" resultType="com.shinhan.myapp.emp.EmpJoinDTO">
+		SELECT EMPLOYEE_ID, FIRST_NAME, SALARY, DEPARTMENT_NAME, CITY, COUNTRY_NAME
+		FROM EMPLOYEES JOIN DEPARTMENTS USING (DEPARTMENT_ID)
+					   JOIN LOCATIONS USING (LOCATION_ID)
+					   JOIN COUNTRIES USING (COUNTRY_ID)
+		WHERE JOB_ID = #{job_id}
+	</select>
+	
+	<select id="selectByJobJoinMap" parameterType="String" resultType="Map">
+		SELECT EMPLOYEE_ID, FIRST_NAME, SALARY, DEPARTMENT_NAME, CITY, COUNTRY_NAME
+		FROM EMPLOYEES JOIN DEPARTMENTS USING (DEPARTMENT_ID)
+					   JOIN LOCATIONS USING (LOCATION_ID)
+					   JOIN COUNTRIES USING (COUNTRY_ID)
+		WHERE JOB_ID = #{job_id}
+	</select>
+	
+	<insert id="insert" parameterType="empVO">
+		INSERT INTO
+		EMPLOYEES(employee_id,
+				  first_name,
+				  last_name,
+				  email,
+				  phone_number,
+				  hire_date,
+				  job_id,
+				  salary,
+				  commission_pct,
+				  manager_id,
+				  department_id)
+		VALUES (#{employee_id},
+				#{first_name},
+				#{last_name},
+				#{email},
+				#{phone_number},
+				#{hire_date},
+				#{job_id},
+				#{salary},
+				#{commission_pct},
+				#{manager_id},
+				#{department_id})
+	</insert>
+	
+	<update id="update" parameterType="empVO">
+		UPDATE EMPLOYEES
+		SET FIRST_NAME = #{first_name},
+			LAST_NAME = #{last_name},
+			EMAIL = #{email},
+			PHONE_NUMBER = #{phone_number},
+			HIRE_DATE = #{hire_date},
+			JOB_ID = #{job_id},
+			SALARY = #{salary},
+			COMMISSION_PCT = #{commission_pct},
+			MANAGER_ID = #{manager_id},
+			DEPARTMENT_ID = #{department_id}
+		WHERE EMPLOYEE_ID = #{employee_id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM EMPLOYEES WHERE EMPLOYEE_ID = #{employee_id}
+	</delete>
+</mapper>

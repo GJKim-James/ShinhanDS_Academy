@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+		<!--
+		Mapper에서 null 값이 왔을 때 칼럼의 해당 타입임을 설정한다.(오류없이 빈 값이 들어감)
+		이 설정이 없으면 #{first_name, jdbcType=VARCAHR} 이렇게 변수 하나하나 다 작성해줘야 함.
+		 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.shinhan.myapp.vo.DeptDTO" alias="deptVO" />
+		<typeAlias type="com.shinhan.myapp.emp.EmpDTO" alias="empVO" />
+		<typeAlias type="com.shinhan.myapp.job.JobDTO" alias="jobVO" />
+		<typeAlias type="com.shinhan.myapp.vo.MemberDTO" alias="memberVO" />
+	</typeAliases>
+</configuration>
