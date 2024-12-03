@@ -21,5 +21,6 @@ public class EmpJoinDTO {
 	String department_name;
 	String city;
 	String country_name;
+	String job_title;
 	
 }

@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import net.firstzone.util.DBUtil;
@@ -24,6 +25,7 @@ import net.firstzone.util.DateUtil;
 public class EmpDAOJDBC implements EmpDAOInterface {
 	
 	@Autowired
+	@Qualifier("dataSource")
 	DataSource ds;
 	
 	Connection conn;
@@ -330,7 +332,7 @@ public class EmpDAOJDBC implements EmpDAOInterface {
 	}
 
 	@Override
-	public List<EmpDTO> selectByJobJoin(String jobId) {
+	public List<EmpJoinDTO> selectByJobJoin(String jobId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

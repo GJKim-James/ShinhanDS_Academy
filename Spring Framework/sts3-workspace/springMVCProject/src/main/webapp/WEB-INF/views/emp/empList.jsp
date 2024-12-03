@@ -12,7 +12,7 @@
 	}
 	
 	hr {
-	clear: both;
+		clear: both;
 	}
 	</style>
 </head>
@@ -20,11 +20,14 @@
 	<div class="container">
 		<%@ include file="../common/header.jsp" %>
 		<a href="${contextPath}/auth/main.do" class="btn btn-primary">메인 화면으로</a>
+		<br>
 		<button id="btnSalary" class="btn btn-danger">급여로만 조회</button>
 		<button id="btnJob" class="btn btn-danger">직책으로만 조회</button>
 		<button id="btnDept" class="btn btn-danger">부서로만 조회</button>
 		<button id="btnJobJoin" class="btn btn-danger">직책Join(List) 조회</button>
 		<button id="btnJobJoinMap" class="btn btn-danger">직책Join(Map) 조회</button>
+		<button id="btnArray" class="btn btn-danger">부서 배열 조회</button>
+		<button id="btnTransfer" class="btn btn-danger">Transaction 연습</button>
 		<hr>
 		
 		<div>
@@ -131,6 +134,8 @@
 			$("#btnDept").on("click", f_dept);
 			$("#btnJobJoin").on("click", f_jobjoin);
 			$("#btnJobJoinMap").on("click", f_jobjoinmap);
+			$("#btnArray").on("click", f_deptArray);
+			$("#btnTransfer").on("click", f_transfer);
 		});
 		
 		function f_ajax() {
@@ -216,6 +221,33 @@
 				data: {job_id : $("select[name='job_id']").val()},
 				success: function(res) {
 					$("#table_here").html(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_deptArray() {
+			$.ajax({
+				url: "${contextPath}/emp/listByArray.do",
+				type: "get",
+				data: {deptArr : [10, 60, 90]},
+				success: function(res) {
+					$("#table_here").html(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function f_transfer() {
+			$.ajax({
+				url: "${contextPath}/account/transfer.do",
+				type: "get",
+				success: function(res) {
+					alert(res);
 				},
 				error: function(err) {
 					alert(err);

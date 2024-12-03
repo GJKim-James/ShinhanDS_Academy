@@ -11,6 +11,7 @@
 <title>검색 조건으로 직원 조회 결과</title>
 </head>
 <body>	
+	${empList}
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>No</th>
@@ -20,6 +21,7 @@
 			<th>부서 이름</th>
 			<th>도시</th>
 			<th>나라</th>
+			<th>직책</th>
 		</tr>
 		<c:forEach items="${empList}" var="emp" varStatus="status">
 			<tr>
@@ -30,6 +32,7 @@
 				<td>${emp.department_name}</td>
 				<td>${emp.city}</td>
 				<td>${emp.country_name}</td>
+				<td>${emp.job_title}</td>
 			</tr>
 		</c:forEach>
 	</table>

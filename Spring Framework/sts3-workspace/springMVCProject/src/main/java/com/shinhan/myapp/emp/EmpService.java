@@ -13,8 +13,9 @@ public class EmpService {
 	// @Autowired : type이 같으면 injection, 같은 타입이 여러 개 있을 경우 이름이 같으면 injection
 	// @Qualifier : 이름으로 injection
 	@Autowired
-	@Qualifier("empMybatis")
-	EmpDAOInterface empDAO;
+//	@Qualifier("empMybatis")
+//	EmpDAOInterface empDAO;
+	EmpDAOMybatis empDAO;
 	
 	public List<EmpDTO> selectAllService() {
 		return empDAO.selectAll();
@@ -52,12 +53,16 @@ public class EmpService {
 		return empDAO.selectByCondition(map);
 	}
 	
-	public List<EmpDTO> selectByJobJoin(String jobId) {
+	public List<EmpJoinDTO> selectByJobJoin(String jobId) {
 		return empDAO.selectByJobJoin(jobId);
 	}
 	
 	public List<Map<String, Object>> selectByJobJoinMap(String jobId) {
 		return empDAO.selectByJobJoinMap(jobId);
+	}
+	
+	public List<EmpDTO> selectByArray(List<Integer> deptArr) {
+		return empDAO.selectByArray(deptArr);
 	}
 	
 }

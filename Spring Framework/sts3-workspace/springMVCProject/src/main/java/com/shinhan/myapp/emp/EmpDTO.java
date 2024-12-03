@@ -19,15 +19,17 @@ import lombok.ToString;
 @AllArgsConstructor
 public class EmpDTO {
 	
-	int employee_id;
+	// 기본형 데이터 타입은 null setting 불가
+	// 기본형 데이터 타입을 Wrapper 클래스로 변경(int => Integer, double => Double)
+	Integer employee_id;
 	String first_name;
 	String last_name;
 	String email;
 	String phone_number;
 	Date hire_date;
 	String job_id;
-	double salary;
-	double commission_pct;
+	Double salary;
+	Double commission_pct;
 	int manager_id;
 	int department_id;
 

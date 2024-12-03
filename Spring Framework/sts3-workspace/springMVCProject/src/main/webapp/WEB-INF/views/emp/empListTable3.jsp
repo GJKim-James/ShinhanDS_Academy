@@ -20,6 +20,7 @@
 			<th>부서 이름</th>
 			<th>도시</th>
 			<th>나라</th>
+			<th>직책</th>
 		</tr>
 		
 		<%-- List<Map<String, Object>> empList 결과가 아래처럼 나옴
@@ -35,6 +36,7 @@
 				<td>${emp.DEPARTMENT_NAME}</td>
 				<td>${emp.CITY}</td>
 				<td>${emp.COUNTRY_NAME}</td>
+				<td>${emp.JOB_TITLE}</td>
 			</tr>
 		</c:forEach>
 	</table>

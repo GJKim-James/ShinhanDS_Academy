@@ -1,5 +1,6 @@
 package com.shinhan.myapp.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -186,6 +187,18 @@ public class EmpController {
 		model.addAttribute("empList", empService.selectByJobJoinMap(job_id));
 		
 		return "emp/empListTable3";
+	}
+	
+	// 여러 부서들의 직원 정보 조회(WHERE DEPARTMENT_ID IN (10, 20, 30))
+	// 배열을 파라미터로 받을 때는 @RequestParam 필수 입력, value에 "[]" 입력 필수
+	@GetMapping("/listByArray.do")
+	public String listByArray(@RequestParam(value = "deptArr[]") Integer[] arr, Model model) {
+		log.info("arr(deptArr[]) : " + Arrays.toString(arr)); // [10, 60, 90]
+		
+		// 배열을 list로 변경
+		model.addAttribute("empList", empService.selectByArray(Arrays.asList(arr)));
+		
+		return "emp/empListTable";
 	}
 
 }

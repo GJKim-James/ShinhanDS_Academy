@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import net.firstzone.util.DBUtil;
@@ -18,6 +19,7 @@ import net.firstzone.util.DBUtil;
 public class JobDAOJDBC implements JobDAOInterface {
 	
 	@Autowired
+	@Qualifier("dataSource")
 	DataSource ds;
 	
 	Connection conn;

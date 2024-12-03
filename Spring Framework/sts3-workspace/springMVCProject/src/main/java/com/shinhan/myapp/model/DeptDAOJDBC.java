@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.shinhan.myapp.vo.DeptDTO;
@@ -21,6 +22,7 @@ public class DeptDAOJDBC implements DeptDAOInterface {
 	
 	// type이 같으면 자동으로 Injection 된다.(IoC, DI)
 	@Autowired
+	@Qualifier("dataSource")
 	DataSource ds;
 	
 	String sqlSelectAll = "SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID";

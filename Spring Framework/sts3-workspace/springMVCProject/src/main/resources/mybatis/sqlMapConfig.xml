@@ -11,6 +11,8 @@
 		 -->
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
+	
+	<!-- Mapper에서 사용, type이 너무 길기 때문에 alias로 대신해줌 -->
 	<typeAliases>
 		<typeAlias type="com.shinhan.myapp.vo.DeptDTO" alias="deptVO" />
 		<typeAlias type="com.shinhan.myapp.emp.EmpDTO" alias="empVO" />

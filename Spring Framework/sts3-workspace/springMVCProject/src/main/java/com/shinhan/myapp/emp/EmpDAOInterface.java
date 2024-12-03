@@ -23,7 +23,7 @@ public interface EmpDAOInterface {
 	
 	public List<EmpDTO> selectByCondition(Map<String, Object> map);
 	
-	public List<EmpDTO> selectByJobJoin(String jobId);
+	public List<EmpJoinDTO> selectByJobJoin(String jobId);
 	
 	public List<Map<String, Object>> selectByJobJoinMap(String jobId);
 

@@ -85,8 +85,9 @@ public class EmpDAOMybatis implements EmpDAOInterface {
 		return empList;
 	}
 
-	public List<EmpDTO> selectByJobJoin(String jobId) {
-		List<EmpDTO> empList = sqlSession.selectList(namespace + "selectByJobJoin", jobId);
+	public List<EmpJoinDTO> selectByJobJoin(String jobId) {
+		List<EmpJoinDTO> empList = sqlSession.selectList(namespace + "selectByJobJoin", jobId);
+		log.info("empList : " + empList);
 		log.info("[selectByJobJoin] empList 건수 : " + empList.size());
 
 		return empList;
@@ -96,6 +97,14 @@ public class EmpDAOMybatis implements EmpDAOInterface {
 		List<Map<String, Object>> empList = sqlSession.selectList(namespace + "selectByJobJoinMap", jobId);
 		log.info("[selectByJobJoinMap] empList 건수 : " + empList.size());
 
+		return empList;
+	}
+	
+	// 여러 부서들의 직원 정보 조회(WHERE DEPARTMENT_ID IN (10, 20, 30))
+	public List<EmpDTO> selectByArray(List<Integer> deptArr) {
+		List<EmpDTO> empList = sqlSession.selectList(namespace + "selectByArray", deptArr);
+		log.info("[selectByArray] empList 건수 : " + empList.size());
+		
 		return empList;
 	}
 
