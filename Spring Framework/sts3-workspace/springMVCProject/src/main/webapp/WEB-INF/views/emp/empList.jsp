@@ -14,13 +14,16 @@
 	hr {
 		clear: both;
 	}
+	
+	.input-group
 	</style>
 </head>
 <body>
 	<div class="container">
 		<%@ include file="../common/header.jsp" %>
 		<a href="${contextPath}/auth/main.do" class="btn btn-primary">메인 화면으로</a>
-		<br>
+		<hr>
+		
 		<button id="btnSalary" class="btn btn-danger">급여로만 조회</button>
 		<button id="btnJob" class="btn btn-danger">직책으로만 조회</button>
 		<button id="btnDept" class="btn btn-danger">부서로만 조회</button>
@@ -28,6 +31,20 @@
 		<button id="btnJobJoinMap" class="btn btn-danger">직책Join(Map) 조회</button>
 		<button id="btnArray" class="btn btn-danger">부서 배열 조회</button>
 		<button id="btnTransfer" class="btn btn-danger">Transaction 연습</button>
+		<hr>
+		
+		<h1>Restful API 사용하기</h1>
+		<button id="btnSelect" class="btn btn-secondary">전체조회</button>
+		<button id="btnInsert" class="btn btn-secondary">입력(jsp에 값 고정)</button>
+		<button id="btnUpdate" class="btn btn-secondary">수정(jsp에 값 고정)</button>
+		<div class="input-group mt-3 mb-3" style="width: 300px; margin: 0 auto;">
+			<input type="number" id="empid" value="100" class="form-control">
+			<button id="btnDetail" class="btn btn-secondary">상세보기</button>
+		</div>
+		<div class="input-group mt-3" style="width: 300px; margin: 0 auto;">
+			<input type="number" id="empid2" value="1" class="form-control">
+			<button id="btnDelete" class="btn btn-secondary">삭제</button>
+		</div>
 		<hr>
 		
 		<div>
@@ -111,6 +128,171 @@
 <!-- 			</table> -->
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$(function() {
+			// Restful API 사용
+			$("#btnSelect").on("click", f_select);
+			$("#btnDetail").on("click", f_detail);
+			$("#btnInsert").on("click", f_insert);
+			$("#btnUpdate").on("click", f_update);
+			$("#btnDelete").on("click", f_delete);
+		});
+		
+		function print(res) {
+			var dynamicRows = "";
+			$.each(res, function(index, emp) {
+				dynamicRows += `
+					<tr>
+						<td>\${ index + 1 }</td>
+						<td><a href="${contextPath}/emp/detail.do?empid=\${emp.employee_id}">\${emp.employee_id}</a></td>
+						<td>\${emp.first_name}</td>
+						<td>\${emp.last_name}</td>
+						<td>\${emp.email}</td>
+						<td>\${emp.phone_number}</td>
+						<td>\${emp.hire_date}</td>
+						<td>\${emp.job_id}</td>
+						<td>\${emp.salary}</td>
+						<td>\${emp.commission_pct}</td>
+						<td>\${emp.manager_id}</td>
+						<td>\${emp.department_id}</td>
+					</tr>
+				`
+			});
+			
+			var output = `
+				<table class="table table-striped table-hover">
+					<tr>
+						<th>No</th>
+						<th>직원 번호</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>이메일</th>
+						<th>전화번호</th>
+						<th>입사일</th>
+						<th>직책</th>
+						<th>급여</th>
+						<th>커미션</th>
+						<th>매니저 번호</th>
+						<th>부서 번호</th>
+					</tr>
+					
+					\${dynamicRows}
+				</table>
+			`
+			
+			return output;
+		}
+		
+		// Restful API 사용
+		function f_select() {
+			$.ajax({
+				url: "${contextPath}/rest/emplist.do",
+				type: "GET",
+				success: function (res) {
+					console.log(res);
+					
+					var output = print(res);
+					
+					$("#table_here").html(output);
+				},
+				error: function (err) {
+					alert(err);
+				}
+			});
+		}
+	
+		function f_detail() {
+			var empid = $("#empid").val();
+			
+			$.ajax({
+				url: `${contextPath}/rest/empdetail.do/\${empid}`,
+				type: "GET",
+				success: function (res) {
+					console.log(res);
+					
+					var dynamicOutput = "";
+					for (let prop in res) {
+						dynamicOutput += `<li>\${prop}의 값은 \${res[prop]}</li>`;
+					}
+					var output = `<ul>\${dynamicOutput}</ul>`;
+					
+					$("#table_here").html(output);
+				},
+				error: function (err) {
+					alert(err);
+				}
+			});
+		}
+		
+		function getData() {
+			var obj = {
+					  "employee_id": 2,
+					  "first_name": "GwangJin33333",
+					  "last_name": "Kim33333",
+					  "email": "abc33333@naver.com",
+					  "phone_number": "010-1111-3333",
+					  "hire_date": 1733151600000,
+					  "job_id": "IT_PROG",
+					  "salary": 4000,
+					  "commission_pct": 0.1,
+					  "manager_id": 103,
+					  "department_id": 60
+					};
+			
+			return obj;
+		}
+		
+		function f_insert() {
+			var emp = getData();
+			
+			$.ajax({
+				url: "${contextPath}/rest/empinsert.do",
+				type: "POST",
+				contentType: "application/json", // default : application/x-www-form-urlencoded
+				data: JSON.stringify(emp),
+				success: function(res) {
+					alert(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+	
+		function f_update() {
+			var emp = getData();
+			
+			$.ajax({
+				url: "${contextPath}/rest/empupdate.do",
+				type: "PUT",
+				contentType: "application/json", // default : application/x-www-form-urlencoded
+				data: JSON.stringify(emp),
+				success: function(res) {
+					alert(res);
+				},
+				error: function(err) {
+					alert(err);
+				}
+			});
+		}
+	
+		function f_delete() {
+			var empid = $("#empid2").val();
+			
+			$.ajax({
+				url: `${contextPath}/rest/empdelete.do/\${empid}`,
+				type: "DELETE",
+				success: function (res) {
+					alert(res);
+				},
+				error: function (err) {
+					alert(err);
+				}
+			});
+		}
+	</script>
+	
 	<script type="text/javascript">
 		<%-- CRUD 작업 후 결과 alert --%>
 		var resultMessage = "${result}";

@@ -25,6 +25,8 @@ li {
 			<li><a href="${contextPath}/emp/insert.do" class="btn btn-success">직원 등록</a></li>
 			<li><a href="${contextPath}/dept/list.do" class="btn btn-primary">부서 조회</a></li>
 			<li><a href="${contextPath}/dept/insert.do" class="btn btn-success">부서 등록</a></li>
+			<li><a href="${contextPath}/board/list.do" class="btn btn-warning">게시판 조회</a></li>
+			<li><a href="${contextPath}/board/insert.do" class="btn btn-warning">게시판 등록</a></li>
 		</ul>
 	</div>
 </body>

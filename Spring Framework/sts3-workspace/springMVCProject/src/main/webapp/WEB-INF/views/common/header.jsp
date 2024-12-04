@@ -16,11 +16,35 @@
 	margin-bottom: 10px;
 	text-align: center;
 }
+
 a {
 	margin-left: 10px;
 }
+
 strong {
 	text-decoration: underline;
+}
+
+.container {
+	margin-top: 10px;
+}
+
+hr {
+	clear: both;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+	text-align: center;
+}
+
+caption {
+	caption-side: top;
+	text-align: center!important;
+	font-size: 2rem;
+	font-weight: bold;
 }
 </style>
 <div id="loginInfo">

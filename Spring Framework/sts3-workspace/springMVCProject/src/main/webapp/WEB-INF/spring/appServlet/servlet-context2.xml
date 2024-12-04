@@ -34,14 +34,14 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<!-- transaction 적용 범위 지정 (advice; 보조 기능) -->
+	<!-- 2024-12-03 추가, transaction 적용 범위 지정 (advice; 보조 기능) -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*" /> <!-- 메서드 별로 제약조건 별도 설정 가능, * : 모든 메소드 -->
 		</tx:attributes>
 	</tx:advice>
 	
-	<!-- transaction pointcut 지정 -->
+	<!-- 2024-12-03 추가, transaction pointcut 지정 -->
 	<aop:config>
 	     <aop:advisor advice-ref="txAdvice" pointcut="execution(* transfer*(..))" />
 	</aop:config>
