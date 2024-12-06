@@ -16,6 +16,26 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<!-- 2024-12-05 추가, WebSocket -->
+		<dependency>
+		   <groupId>org.springframework</groupId>
+		   <artifactId>spring-websocket</artifactId>
+		   <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>javax.websocket</groupId>
+		   <artifactId>javax.websocket-api</artifactId>
+		   <version>1.1</version>
+		</dependency>
+		
+		<!-- 2024-12-05 추가, JSON -->
+		<dependency>
+		   <groupId>com.googlecode.json-simple</groupId>
+		   <artifactId>json-simple</artifactId>
+		   <version>1.1.1</version>
+		</dependency>
+		
 		<!-- 2024-12-04 추가, 썸네일 -->
 		<dependency>
 			<groupId>net.coobird</groupId>
@@ -229,11 +249,20 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- 2024-12-05 추가, Junit : 단위 테스트 API -->
 		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- 2024-12-05 수정(4.7 => 4.12), Junit : 단위 테스트 API -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
