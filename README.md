@@ -31,7 +31,3 @@
 10. Project > Properties > Project Facets 자바 버전 11로 설정
 11. Tomcat 설정
 12. STS 실행 Spring Legacy Project를 생성
-    #### Spring Boot
-- 개발 환경
-  - Java 17
-  - IDE : STS4(Spring Tool Suite 4)
